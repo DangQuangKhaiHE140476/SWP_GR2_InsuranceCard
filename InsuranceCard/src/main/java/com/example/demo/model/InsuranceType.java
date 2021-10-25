@@ -32,4 +32,50 @@ public class InsuranceType {
 			@JoinColumn(name = "insurancetypeid", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "insuranceliabilityid", referencedColumnName = "id") })
 	private List<InsuranceLiability> insuranceLiabilities;
+
+	public InsuranceType() {
+		super();
+	}
+
+	public InsuranceType(Long id, String insurancetype, List<Package> packages,
+			List<InsuranceLiability> insuranceLiabilities) {
+		super();
+		this.id = id;
+		this.insurancetype = insurancetype;
+		this.packages = packages;
+		this.insuranceLiabilities = insuranceLiabilities;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getInsurancetype() {
+		return insurancetype;
+	}
+
+	public void setInsurancetype(String insurancetype) {
+		this.insurancetype = insurancetype;
+	}
+
+	public List<Package> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
+	}
+
+	public List<InsuranceLiability> getInsuranceLiabilities() {
+		return insuranceLiabilities;
+	}
+
+	public void setInsuranceLiabilities(List<InsuranceLiability> insuranceLiabilities) {
+		this.insuranceLiabilities = insuranceLiabilities;
+	}
+	
 }
