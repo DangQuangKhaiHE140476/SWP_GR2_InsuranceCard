@@ -42,4 +42,87 @@ public class Accident {
 	//not a column in table
 	@OneToOne(mappedBy = "accident", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Compensation compensation;
+
+	public Accident() {
+		super();
+	}
+
+	public Accident(Long id, Contract contract, Date accidentDate, String damage, String idaccidentfrompolice,
+			String iddamagefromhospital, AccidentStatus accidentStatus, Compensation compensation) {
+		super();
+		this.id = id;
+		this.contract = contract;
+		this.accidentDate = accidentDate;
+		this.damage = damage;
+		this.idaccidentfrompolice = idaccidentfrompolice;
+		this.iddamagefromhospital = iddamagefromhospital;
+		this.accidentStatus = accidentStatus;
+		this.compensation = compensation;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public Date getAccidentDate() {
+		return accidentDate;
+	}
+
+	public void setAccidentDate(Date accidentDate) {
+		this.accidentDate = accidentDate;
+	}
+
+	public String getDamage() {
+		return damage;
+	}
+
+	public void setDamage(String damage) {
+		this.damage = damage;
+	}
+
+	public String getIdaccidentfrompolice() {
+		return idaccidentfrompolice;
+	}
+
+	public void setIdaccidentfrompolice(String idaccidentfrompolice) {
+		this.idaccidentfrompolice = idaccidentfrompolice;
+	}
+
+	public String getIddamagefromhospital() {
+		return iddamagefromhospital;
+	}
+
+	public void setIddamagefromhospital(String iddamagefromhospital) {
+		this.iddamagefromhospital = iddamagefromhospital;
+	}
+
+	public AccidentStatus getAccidentStatus() {
+		return accidentStatus;
+	}
+
+	public void setAccidentStatus(AccidentStatus accidentStatus) {
+		this.accidentStatus = accidentStatus;
+	}
+
+	public Compensation getCompensation() {
+		return compensation;
+	}
+
+	public void setCompensation(Compensation compensation) {
+		this.compensation = compensation;
+	}
+	
+	
 }
