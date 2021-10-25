@@ -31,4 +31,58 @@ public class Payment {
 	@ManyToOne
 	@JoinColumn(name = "typeid", nullable = false)
 	private PaymentType paymentType;
+
+	public Payment() {
+		super();
+	}
+
+	public Payment(Long id, Timestamp paymentdate, Contract contract, Punishment punishment, PaymentType paymentType) {
+		super();
+		this.id = id;
+		this.paymentdate = paymentdate;
+		this.contract = contract;
+		this.punishment = punishment;
+		this.paymentType = paymentType;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Timestamp getPaymentdate() {
+		return paymentdate;
+	}
+
+	public void setPaymentdate(Timestamp paymentdate) {
+		this.paymentdate = paymentdate;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public Punishment getPunishment() {
+		return punishment;
+	}
+
+	public void setPunishment(Punishment punishment) {
+		this.punishment = punishment;
+	}
+
+	public PaymentType getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
+	
 }
