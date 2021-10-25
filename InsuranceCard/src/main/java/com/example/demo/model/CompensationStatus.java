@@ -23,4 +23,40 @@ public class CompensationStatus {
 	// not a column in table
 	@OneToMany(mappedBy = "compensationStatus", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Compensation> compensations;
+
+	public CompensationStatus() {
+		super();
+	}
+
+	public CompensationStatus(Long id, String value, List<Compensation> compensations) {
+		super();
+		this.id = id;
+		this.value = value;
+		this.compensations = compensations;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public List<Compensation> getCompensations() {
+		return compensations;
+	}
+
+	public void setCompensations(List<Compensation> compensations) {
+		this.compensations = compensations;
+	}
+	
 }

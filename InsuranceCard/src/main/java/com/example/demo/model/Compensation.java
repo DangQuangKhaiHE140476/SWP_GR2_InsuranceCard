@@ -33,4 +33,50 @@ public class Compensation {
 			@JoinColumn(name = "compensationid", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "liabilityid", referencedColumnName = "id") })
 	private List<InsuranceLiability> insuranceLiabilities;
+
+	public Compensation() {
+		super();
+	}
+
+	public Compensation(Long id, Accident accident, CompensationStatus compensationStatus,
+			List<InsuranceLiability> insuranceLiabilities) {
+		super();
+		this.id = id;
+		this.accident = accident;
+		this.compensationStatus = compensationStatus;
+		this.insuranceLiabilities = insuranceLiabilities;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Accident getAccident() {
+		return accident;
+	}
+
+	public void setAccident(Accident accident) {
+		this.accident = accident;
+	}
+
+	public CompensationStatus getCompensationStatus() {
+		return compensationStatus;
+	}
+
+	public void setCompensationStatus(CompensationStatus compensationStatus) {
+		this.compensationStatus = compensationStatus;
+	}
+
+	public List<InsuranceLiability> getInsuranceLiabilities() {
+		return insuranceLiabilities;
+	}
+
+	public void setInsuranceLiabilities(List<InsuranceLiability> insuranceLiabilities) {
+		this.insuranceLiabilities = insuranceLiabilities;
+	}
+	
 }
