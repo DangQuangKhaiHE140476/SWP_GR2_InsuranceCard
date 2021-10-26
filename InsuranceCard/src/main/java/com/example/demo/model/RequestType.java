@@ -23,4 +23,40 @@ public class RequestType {
 	//not a column in table
 	@OneToMany(mappedBy = "requestType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Request> requests;
+
+	public RequestType() {
+		super();
+	}
+
+	public RequestType(Long id, String type, List<Request> requests) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.requests = requests;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+	
 }
