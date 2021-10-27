@@ -1,4 +1,4 @@
-<%@page import="com.example.demo.model.customers"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -136,8 +136,8 @@
                               </h5>
                             </div>
                             <div class="card-body">
-                            <%ArrayList<customers> list = (ArrayList<customers>)request.getAttribute("staff");
-    							customers c = list.get(0);
+                            <%ArrayList<User> list = (ArrayList<User>)request.getAttribute("staff");
+    							User c = list.get(0);
     							%>                              
                               <form action="/updateStaff">                              
                                 <div class="form-group">
@@ -151,7 +151,7 @@
             
                                 <div class="form-group">
                                   <label for="ssn" class="font-weight-bold">Social security number</label>
-                                  <input type="text" class="form-control" id="ssn" name="socialsecuritynumber" value="<%=c.getSocialsecuritynumber()%>">
+                                  <input type="text" class="form-control" id="ssn" name="socialsercuritynumber" value="<%=c.getSocialsercuritynumber()%>">
                                 </div>
             
                                 <div class="form-group">
@@ -181,7 +181,7 @@
                                 </div>
                                 <input type="hidden" name="username" value=<%=c.getUsername() %>>
                                 <input type="hidden" name="password" value=<%=c.getPassword() %>>
-                                <input type="hidden" name="roleid" value=<%=c.getRoleid() %>>
+                                
                                 <div class="container text-center">
                                 <button type="submit" class="btn btn-primary text-center">Update staff</button>
                                 <a class="btn btn-primary" href="/staff" role="button">Back to staff list</a>

@@ -1,4 +1,4 @@
-<%@page import="com.example.demo.model.customers"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -136,12 +136,12 @@
                                 </h5>
                             </div>
                             <div class="card-body">
-                            <%ArrayList<customers> list = (ArrayList<customers>)request.getAttribute("staff");%>
+                            <%ArrayList<User> list = (ArrayList<User>)request.getAttribute("staff");%>
                                 <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Name</h5>
                                 <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 260px;">${staff[0].getName()}</h5>
                                 <hr class="sidebar-divider" />
                                 <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Social security number</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 110px;">${staff[0].getSocialsecuritynumber()}</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 110px;">${staff[0].getSocialsercuritynumber()}</h5>
                                 <hr class="sidebar-divider" />
                                 <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Date of birth</h5>
                                 <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 202px;">${staff[0].getDob()}</h5>

@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Vehicle {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "ownername", unique = true, length = 50, nullable = false)

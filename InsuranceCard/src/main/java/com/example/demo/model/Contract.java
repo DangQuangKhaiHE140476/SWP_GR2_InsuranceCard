@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Contract {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "creationdate", nullable = false)

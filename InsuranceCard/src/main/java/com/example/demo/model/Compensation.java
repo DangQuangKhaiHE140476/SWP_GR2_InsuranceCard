@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Compensation {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@OneToOne

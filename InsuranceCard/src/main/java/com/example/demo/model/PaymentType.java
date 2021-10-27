@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class PaymentType {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "type", unique = true, length = 25, nullable = false)

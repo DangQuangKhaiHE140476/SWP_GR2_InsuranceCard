@@ -1,4 +1,4 @@
-<%@page import="com.example.demo.model.customers"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -153,8 +153,8 @@
                                         </thead>
                                         <tbody>
                                         <%
-											ArrayList<customers> list = (ArrayList<customers>) request.getAttribute("staffs");
-											for (customers c : list) {
+											ArrayList<User> list = (ArrayList<User>) request.getAttribute("staffs");
+											for (User c : list) {
 											%>
 											<tr>
 												<td><a href="/staffDetails?id=<%=c.getId()%>"><%=c.getId()%></a></td>

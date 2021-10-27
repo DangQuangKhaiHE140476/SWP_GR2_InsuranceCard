@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class InsuranceLiability {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "address",unique = true, nullable = false)

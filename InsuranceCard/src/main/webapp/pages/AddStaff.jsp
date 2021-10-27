@@ -142,7 +142,7 @@
             
                                 <div class="form-group">
                                   <label for="SSN" class="font-weight-bold">Social security number</label>
-                                  <input type="text" class="form-control" id="SSN" name="socialsecuritynumber" placeholder="Enter ssn">
+                                  <input type="text" class="form-control" id="SSN" name="socialsercuritynumber" placeholder="Enter ssn">
                                 </div>
             
                                 <div class="form-group">
@@ -180,7 +180,7 @@
                                     <label for="pass" class="font-weight-bold"></label>Password</label>
                                     <input type="text" class="form-control" id="pass" name="password" placeholder="Enter password">
                                 </div>
-            					<input type="hidden" name="roleid" value="3">
+            					<input type="hidden" name="roleid" value="2">
                                 <button type="submit" class="btn btn-primary text-center">Add staff</button>
                               </form>
                             </div>

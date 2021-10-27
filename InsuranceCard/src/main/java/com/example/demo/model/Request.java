@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Request {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "requestdate", nullable = false)

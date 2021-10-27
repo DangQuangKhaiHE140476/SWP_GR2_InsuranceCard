@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class CompensationStatus {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "value", unique = true, length = 10, nullable = false)
