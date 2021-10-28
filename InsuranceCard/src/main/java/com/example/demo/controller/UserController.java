@@ -29,7 +29,7 @@ public class UserController {
 	public ModelAndView getAllStaff() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("staffs", userService.viewAllStaff());
-		mv.setViewName("showstafflist");
+		mv.setViewName("ShowStaffList");
 		return mv;
 	}
 
@@ -43,7 +43,7 @@ public class UserController {
 
 	@RequestMapping("/viewaddstaff")
 	public String viewAddStaff() {
-		return "addstaff";
+		return "AddStaff";
 	}
 
 	@RequestMapping("/addstaff")
@@ -60,7 +60,7 @@ public class UserController {
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("staffs", userService.viewAllStaff());
-		mv.setViewName("showstafflist");
+		mv.setViewName("ShowStaffList");
 		return mv;
 	}
 	
@@ -69,7 +69,7 @@ public class UserController {
 		userService.deleteStaff(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("staffs",userService.viewAllStaff());
-		mv.setViewName("showstafflist");
+		mv.setViewName("ShowStaffList");
 		return mv;
 	}
 	
@@ -77,7 +77,7 @@ public class UserController {
 	public ModelAndView viewUpdateStaff(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("staff",userService.viewStaff(id));
-		mv.setViewName("updatestaff");
+		mv.setViewName("UpdateStaff");
 		return mv;
 	}
 	
