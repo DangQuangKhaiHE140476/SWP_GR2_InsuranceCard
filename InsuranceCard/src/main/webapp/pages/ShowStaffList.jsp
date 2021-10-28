@@ -43,7 +43,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>Manage package</span>
                 </a></li>
@@ -57,7 +57,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showliability">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>Manage Insurance Liability</span>
                 </a></li>
@@ -65,7 +65,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/home"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Manage staff</span></a></li>
 
             <!-- Divider -->
@@ -137,8 +137,7 @@
                     <div class="col-lg-8">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Contract
-                                    information</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Staff List</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -157,7 +156,7 @@
 											for (User c : list) {
 											%>
 											<tr>
-												<td><a href="/staffDetails?id=<%=c.getId()%>"><%=c.getId()%></a></td>
+												<td><a href="/showstaffdetail?id=<%=c.getId()%>"><%=c.getId()%></a></td>
 												<td><%=c.getName()%></td>
 												<td><%=c.getUsername()%></td>
 												<td><%=c.getPassword()%></td>
@@ -172,7 +171,7 @@
                         </div>
                     </div>
                     <div class="container text-center">
-                        <a class="btn btn-primary" href="/viewAddStaff" role="button">Add new staff</a>
+                        <a class="btn btn-primary" href="/viewaddstaff" role="button">Add new staff</a>
                     </div>
                 </div>
 

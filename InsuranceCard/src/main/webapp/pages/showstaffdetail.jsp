@@ -1,3 +1,5 @@
+<%@page import="com.example.demo.model.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add staff</title>
+    <title>Staff Detail</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +43,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>Manage package</span>
                 </a></li>
@@ -55,7 +57,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showliability">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>Manage Insurance Liability</span>
                 </a></li>
@@ -63,7 +65,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/home"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Manage staff</span></a></li>
 
             <!-- Divider -->
@@ -88,7 +90,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-                            Add staff </h1>
+                            Show staff </h1>
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -129,62 +131,45 @@
                     <div class="col-lg-6">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                              <h5 class="m-0 font-weight-bold text-primary">
-                                Fill in staff information
-                              </h5>
+                                <h5 class="m-0 font-weight-bold text-primary">
+                                    Staff profile
+                                </h5>
                             </div>
-                            <div class="card-body">                              
-                              <form action="/addStaff">
-                                <div class="form-group">
-                                  <label for="Name" class="font-weight-bold">Name</label>
-                                  <input type="text" class="form-control" id="Name" name="name" placeholder="Enter name">                     
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="SSN" class="font-weight-bold">Social security number</label>
-                                  <input type="text" class="form-control" id="SSN" name="socialsecuritynumber" placeholder="Enter ssn">
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="DOB" class="font-weight-bold">Date of birth</label>
-                                  <input type="text" class="form-control" id="DOB" name="dob" placeholder="Enter dob">
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="Status" class="font-weight-bold">Gender</label>
-                                    <input type="radio" id="Status" name="gender" value="1" >Male
-                                    <input type="radio" id="Status" name="gender" value="0" >Female 
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Address" class="font-weight-bold">Address</label>
-                                    <input type="text" class="form-control" id="Address" name="address" placeholder="Enter address">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Phone" class="font-weight-bold">Phone</label>
-                                    <input type="text" class="form-control" id="Phone" name="phonenumber" placeholder="Enter phone">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Email" class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control" id="Email" name="email" placeholder="Enter email">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Username" class="font-weight-bold">Username</label>
-                                    <input type="text" class="form-control" id="Username" name="username" placeholder="Enter username">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="pass" class="font-weight-bold"></label>Password</label>
-                                    <input type="text" class="form-control" id="pass" name="password" placeholder="Enter password">
-                                </div>
-            					<input type="hidden" name="roleid" value="3">
-                                <button type="submit" class="btn btn-primary text-center">Add staff</button>
-                              </form>
+                            <div class="card-body">
+                            <%ArrayList<User> list = (ArrayList<User>)request.getAttribute("staff");%>
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Name</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 260px;">${staff[0].getName()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Social security number</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 110px;">${staff[0].getSocialsercuritynumber()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Date of birth</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 202px;">${staff[0].getDob()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Gender</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 250px;"><%=(list.get(0).isGender() == true?"Male":"Female")%></h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Address</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 241px;">${staff[0].getAddress()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Phone number</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 183px;">${staff[0].getPhonenumber()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Email</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 265px;">${staff[0].getEmail()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Username</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 224px;">${staff[0].getUsername()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Password</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 225px;">${staff[0].getPassword()}</h5>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <a class="btn btn-primary" href="/viewUpdateStaff?id=${staff[0].getId()}" role="button">Edit staff</a>
+                        <a class="btn btn-primary" href="/deleteStaff?id=${staff[0].getId()}" role="button" onclick ="return confirm('Do you want to delete this staff?')">Delete staff</a>
+                        <a class="btn btn-primary" href="/showstafflist" role="button">Back to staff list</a>
                     </div>
                 </div>
 

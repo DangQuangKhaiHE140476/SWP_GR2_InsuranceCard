@@ -15,40 +15,40 @@ import com.example.demo.service.UserService;
 
 @Controller
 public class UserController {
-	private final UserService service;
-	private final RoleService service1;
+	private final UserService userService;
+	private final RoleService roleService;
 	
 	@Autowired
-	public UserController(UserService service, RoleService service1) {
+	public UserController(UserService userService, RoleService roleService) {
 		super();
-		this.service = service;
-		this.service1 = service1;
+		this.userService = userService;
+		this.roleService = roleService;
 	}
 
-	@RequestMapping("/staff")
+	@RequestMapping("/showstafflist")
 	public ModelAndView getAllStaff() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staffs", service.viewAllStaff());
-		mv.setViewName("ShowStaffList");
+		mv.addObject("staffs", userService.viewAllStaff());
+		mv.setViewName("showstafflist");
 		return mv;
 	}
 
-	@RequestMapping("/staffDetails")
+	@RequestMapping("/showstaffdetail")
 	public ModelAndView getStaff(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staff", service.viewStaff(id));
-		mv.setViewName("ShowStaffDetails");
+		mv.addObject("staff", userService.viewStaff(id));
+		mv.setViewName("showstaffdetail");
 		return mv;
 	}
 
-	@RequestMapping("/viewAddStaff")
+	@RequestMapping("/viewaddstaff")
 	public String viewAddStaff() {
-		return "AddStaff";
+		return "addstaff";
 	}
 
-	@RequestMapping("/addStaff")
+	@RequestMapping("/addstaff")
 	public ModelAndView AddStaff(User user) {
-		ArrayList<Role> list = service1.getAllRole();
+		ArrayList<Role> list = roleService.getAllRole();
 		for (Role role : list) {
 			if(role.getId() == 2) {
 				user.setRole(role);
@@ -56,45 +56,47 @@ public class UserController {
 			}
 		}
 		
-		service.addNewStaff(user);
+		userService.addNewStaff(user);
 
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staffs", service.viewAllStaff());
-		mv.setViewName("ShowStaffList");
+		mv.addObject("staffs", userService.viewAllStaff());
+		mv.setViewName("showstafflist");
 		return mv;
 	}
 	
-	@RequestMapping("/deleteStaff")
+	@RequestMapping("/deletestaff")
 	public ModelAndView deleteStaff(String id) {
-		service.deleteStaff(id);
+		userService.deleteStaff(id);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staffs",service.viewAllStaff());
-		mv.setViewName("ShowStaffList");
+		mv.addObject("staffs",userService.viewAllStaff());
+		mv.setViewName("showstafflist");
 		return mv;
 	}
 	
 	@RequestMapping("/viewUpdateStaff{id}")
 	public ModelAndView viewUpdateStaff(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staff",service.viewStaff(id));
-		mv.setViewName("UpdateStaff");
+		mv.addObject("staff",userService.viewStaff(id));
+		mv.setViewName("updatestaff");
 		return mv;
 	}
 	
 	@RequestMapping("/updateStaff")
 	public ModelAndView UpdateStaff(User user) {
-		ArrayList<Role> list = service1.getAllRole();
+		ArrayList<Role> list = roleService.getAllRole();
 		for (Role role : list) {
 			if(role.getId() == 2) {
 				user.setRole(role);
 				break;
 			}
 		}
-		service.addNewStaff(user);
+		
+		//write code for update in repo and use it .-.
+		userService.addNewStaff(user);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("staff",service.viewStaff(user.getId().toString()));
-		mv.setViewName("ShowStaffDetails");
+		mv.addObject("staff",userService.viewStaff(user.getId().toString()));
+		mv.setViewName("showstaffdetail");
 		return mv;
 	}
 }

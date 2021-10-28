@@ -1,4 +1,5 @@
-<%@page import="com.example.demo.model.customers"%>
+<%@page import="com.example.demo.model.InsuranceLiability"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -13,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Request New Contract</title>
+    <title>Edit Insurance Liability</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +44,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>Manage package</span>
                 </a></li>
@@ -57,7 +58,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showliability">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>Manage Insurance Liability</span>
                 </a></li>
@@ -65,7 +66,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/home"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Manage staff</span></a></li>
 
             <!-- Divider -->
@@ -90,7 +91,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-                            Show staff </h1>
+                            Edit Insurance Liability </h1>
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -131,45 +132,38 @@
                     <div class="col-lg-6">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h5 class="m-0 font-weight-bold text-primary">
-                                    Staff profile
-                                </h5>
+                              <h5 class="m-0 font-weight-bold text-primary">
+                                Fill in the changes
+                              </h5>
                             </div>
                             <div class="card-body">
-                            <%ArrayList<customers> list = (ArrayList<customers>)request.getAttribute("staff");%>
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Name</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 260px;">${staff[0].getName()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Social security number</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 110px;">${staff[0].getSocialsecuritynumber()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Date of birth</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 202px;">${staff[0].getDob()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Gender</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 250px;"><%=(list.get(0).isGender() == true?"Male":"Female")%></h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Address</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 241px;">${staff[0].getAddress()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Phone number</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 183px;">${staff[0].getPhonenumber()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Email</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 265px;">${staff[0].getEmail()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Username</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 224px;">${staff[0].getUsername()}</h5>
-                                <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Password</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 225px;">${staff[0].getPassword()}</h5>
+                            <%ArrayList<InsuranceLiability> list = (ArrayList<InsuranceLiability>)request.getAttribute("liabilities");
+    							InsuranceLiability liability = list.get(0);
+    							%>                              
+                              <form action="/updateLiability">                              
+                                <div class="form-group">
+                                    <label for="id" class="font-weight-bold">Id</label>
+                                    <input type="text" class="form-control" id="id" name="id" value="<%=liability.getId()%>" readonly>                     
+                                </div>
+                                <div class="form-group">
+                                  <label for="leveldamage" class="font-weight-bold">Level Damage</label>
+                                  <input type="text" class="form-control" id="leveldamage" name="leveldamage" value="<%=liability.getLevelDamage()%>">                     
+                                </div>
+            
+                                <div class="form-group">
+                                  <label for="compensationamount" class="font-weight-bold">Compensation Amount</label>
+                                  <input type="number" class="form-control" id="compensationamount" name="compensationamount" value="<%=liability.getCompensationAmount()%>">
+                                </div>
+            
+                                
+                                <div class="container text-center">
+                                <button type="submit" class="btn btn-primary text-center">Save</button>
+                                <a class="btn btn-primary" href="/showliability" role="button">Back</a>
+                                <a class="btn btn-primary" href="/deleteLiability?id=<%=liability.getId()%>" role="button" onclick ="return confirm('Do you want to delete this staff?')">Delete</a>
+                                </div>
+                            </form>
                             </div>
-                        </div>
-                    </div>
-                    <div class="container text-center">
-                        <a class="btn btn-primary" href="/viewUpdateStaff?id=${staff[0].getId()}" role="button">Edit staff</a>
-                        <a class="btn btn-primary" href="/deleteStaff?id=${staff[0].getId()}" role="button" onclick ="return confirm('Do you want to delete this staff?')">Delete staff</a>
-                        <a class="btn btn-primary" href="/staff" role="button">Back to staff list</a>
+                          </div>
                     </div>
                 </div>
 

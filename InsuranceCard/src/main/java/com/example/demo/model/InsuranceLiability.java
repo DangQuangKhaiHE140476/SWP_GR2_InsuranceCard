@@ -16,7 +16,7 @@ public class InsuranceLiability {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "address",unique = true, nullable = false)
+	@Column(name = "leveldamage",unique = true, nullable = false)
 	private String levelDamage;
 	
 	@Column(name = "compensationamount", nullable = false)

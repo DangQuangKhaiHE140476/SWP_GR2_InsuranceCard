@@ -43,7 +43,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>Manage package</span>
                 </a></li>
@@ -57,7 +57,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showliability">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>Manage Insurance Liability</span>
                 </a></li>
@@ -65,7 +65,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/home"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Manage staff</span></a></li>
 
             <!-- Divider -->
@@ -184,7 +184,7 @@
                                 
                                 <div class="container text-center">
                                 <button type="submit" class="btn btn-primary text-center">Update staff</button>
-                                <a class="btn btn-primary" href="/staff" role="button">Back to staff list</a>
+                                <a class="btn btn-primary" href="showstafflist" role="button">Back to staff list</a>
                                 </div>
                             </form>
                             </div>

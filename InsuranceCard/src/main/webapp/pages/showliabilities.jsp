@@ -1,4 +1,5 @@
-<%@page import="com.example.demo.model.customers"%>
+<%@page import="com.example.demo.model.InsuranceLiability"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -13,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Update staff</title>
+    <title>Insurance Liability List</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +44,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>Manage package</span>
                 </a></li>
@@ -57,7 +58,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="/showliability">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>Manage Insurance Liability</span>
                 </a></li>
@@ -65,7 +66,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/home"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Manage staff</span></a></li>
 
             <!-- Divider -->
@@ -90,7 +91,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-                            Update staff </h1>
+                            Insurance Liability List</h1>
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -124,71 +125,58 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
+                </nav>
+                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <!--Contract-->
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
+                    <!--Contract  function-->
+                    <!--End of Contract function-->
+                    <!--Detail function-->
+
+                    <div class="col-lg-8">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                              <h5 class="m-0 font-weight-bold text-primary">
-                                Fill in staff information
-                              </h5>
+                                <h6 class="m-0 font-weight-bold text-primary">Liability List</h6>
                             </div>
                             <div class="card-body">
-                            <%ArrayList<customers> list = (ArrayList<customers>)request.getAttribute("staff");
-    							customers c = list.get(0);
-    							%>                              
-                              <form action="/updateStaff">                              
-                                <div class="form-group">
-                                    <label for="id" class="font-weight-bold">Id</label>
-                                    <input type="text" class="form-control" id="areadamage" name="id" value="<%=c.getId()%>" readonly>                     
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Level Damage</th>
+                                                <th>Compensation Amount</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <%
+											ArrayList<InsuranceLiability> list = (ArrayList<InsuranceLiability>) request.getAttribute("liabilities");
+											for (InsuranceLiability liability : list) {
+											%>
+											<tr>
+												<td><%=liability.getId()%></td>
+												<td><%=liability.getLevelDamage()%></td>
+												<td><%=liability.getCompensationAmount()%></td>
+												<td>
+													<a class="nav-link" href="/viewEditLiability?id=<%=liability.getId()%>"> <i class="fas fa-file-contract fa-lg"></i>
+                    									<span>Edit</span>
+                    								</a>
+                    							</td>
+											</tr>
+											<%
+											}
+											%>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="form-group">
-                                  <label for="Name" class="font-weight-bold">Name</label>
-                                  <input type="text" class="form-control" id="Name" name="name" value="<%=c.getName()%>">                     
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="ssn" class="font-weight-bold">Social security number</label>
-                                  <input type="text" class="form-control" id="ssn" name="socialsecuritynumber" value="<%=c.getSocialsecuritynumber()%>">
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="Dob" class="font-weight-bold">Date of birth</label>
-                                  <input type="text" class="form-control" id="Dob" name="dob" value="<%=c.getDob()%>">
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="Gender" class="font-weight-bold">Gender</label>
-                                  <input type="radio" class="form-control" id="Gender" name="gender" value="true" <%=(c.isGender() == true?"checked":"")%>>Male
-                                  <input type="radio" class="form-control" id="Gender" name="gender" value="false" <%=(c.isGender() == false?"checked":"")%>>Female
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Address" class="font-weight-bold">Address</label>
-                                    <input type="text" class="form-control" id="Address" name="address" value="<%=c.getAddress()%>">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Phone" class="font-weight-bold">Phone</label>
-                                    <input type="text" class="form-control" id="Phone" name="phonenumber" value="<%=c.getPhonenumber()%>">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Email" class="font-weight-bold">Email</label>
-                                    <input type="text" class="form-control" id="Email" name="email" value="<%=c.getEmail()%>">
-                                </div>
-                                <input type="hidden" name="username" value=<%=c.getUsername() %>>
-                                <input type="hidden" name="password" value=<%=c.getPassword() %>>
-                                <input type="hidden" name="roleid" value=<%=c.getRoleid() %>>
-                                <div class="container text-center">
-                                <button type="submit" class="btn btn-primary text-center">Update staff</button>
-                                <a class="btn btn-primary" href="/staff" role="button">Back to staff list</a>
-                                </div>
-                            </form>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <a class="btn btn-primary" href="/viewaddliability" role="button">Add insurance liability</a>
                     </div>
                 </div>
 
@@ -210,6 +198,8 @@
     </a>
 
     <!-- Logout Modal-->
+    
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
