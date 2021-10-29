@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;  
+import java.util.ArrayList;   
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +59,20 @@ public class PackageService {
 		p.setInsuranceType(insuranceTypeRepo.getById(Long.parseLong(InsuranceType)));
 		p.setInsuranceLiabilities(liabilityList);
 		packageRepo.save(p);
+	}
+	
+	public void editPackage(String id,
+			String VehicleType,
+			String Price,
+			String Duration,
+			String InsuranceType,
+			String [] liabilities) {
+		int PriceNum = Integer.parseInt(Price);
+		packageRepo.updatePackage(id, Duration, PriceNum , InsuranceType, VehicleType);
+		
+		packageRepo.deletePackageInsuranceLiability(id);
+		for(String liabilitylist:liabilities) {
+			packageRepo.insertPackageInsuranceLiability(id, liabilitylist);
+		}
 	}
 }

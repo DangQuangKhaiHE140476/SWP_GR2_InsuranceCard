@@ -76,4 +76,16 @@ public class ManagePackageController {
 		mv.setViewName("editpackage");
 		return mv;
 	}
+	
+	@RequestMapping("/edit")
+	public String Edit(
+			@RequestParam("id") String id,
+			@RequestParam("VehicleType") String VehicleType,
+			@RequestParam("Price") String Price,
+			@RequestParam("Duration") String Duration,
+			@RequestParam("InsuranceType") String InsuranceType,
+			@RequestParam("liabilities") String [] liabilities) {
+		packageService.editPackage(id, VehicleType, Price, Duration, InsuranceType, liabilities);
+		return "redirect:/showpackage?id=" + id;
+	}
 }
