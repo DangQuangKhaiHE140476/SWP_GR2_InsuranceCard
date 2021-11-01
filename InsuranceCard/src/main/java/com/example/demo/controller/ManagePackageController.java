@@ -49,7 +49,7 @@ public class ManagePackageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vehicleTypes", vehicleTypeService.getAllVehicleType());
 		mv.addObject("insuraceTypes", insuranceTypeService.getAllInsuranceType());
-		mv.addObject("insuranceLiabilities", insuranceLiabilityService.getAllInsuranceLiability());
+		mv.addObject("insuranceLiabilities", insuranceLiabilityService.getAllInsuranceLiabilities());
 		mv.setViewName("addpackage");
 		return mv;
 	}
@@ -72,20 +72,8 @@ public class ManagePackageController {
 		mv.addObject("package", packageService.getPackageById(id));
 		mv.addObject("vehicleTypes", vehicleTypeService.getAllVehicleType());
 		mv.addObject("insuraceTypes", insuranceTypeService.getAllInsuranceType());
-		mv.addObject("insuranceLiabilities", insuranceLiabilityService.getAllInsuranceLiability());
+		mv.addObject("insuranceLiabilities", insuranceLiabilityService.getAllInsuranceLiabilities());
 		mv.setViewName("editpackage");
 		return mv;
-	}
-	
-	@RequestMapping("/edit")
-	public String Edit(
-			@RequestParam("id") String id,
-			@RequestParam("VehicleType") String VehicleType,
-			@RequestParam("Price") String Price,
-			@RequestParam("Duration") String Duration,
-			@RequestParam("InsuranceType") String InsuranceType,
-			@RequestParam("liabilities") String [] liabilities) {
-		packageService.editPackage(id, VehicleType, Price, Duration, InsuranceType, liabilities);
-		return "redirect:/showpackage?id=" + id;
 	}
 }

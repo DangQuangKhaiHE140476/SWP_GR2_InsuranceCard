@@ -18,7 +18,7 @@ public class InsuranceLiabilityService {
 		this.repo = repo;
 	}
 	
-	public ArrayList<InsuranceLiability> getAllInsuranceLiability(){
+	public ArrayList<InsuranceLiability> getAllInsuranceLiabilities(){
 		return (ArrayList<InsuranceLiability>) repo.findAll();
 	}
 	
@@ -47,7 +47,5 @@ public class InsuranceLiabilityService {
 		repo.save(liability);
 	}
 
-	public void deleteLiability(String id) {
-		repo.deleteLiability(id);
-	}
+	
 }

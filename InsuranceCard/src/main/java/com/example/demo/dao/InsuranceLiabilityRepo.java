@@ -28,9 +28,4 @@ public interface InsuranceLiabilityRepo extends CrudRepository<InsuranceLiabilit
 			+ " WHERE `id` = ?1", nativeQuery = true)
 	public void updateLiability(String id, String leveldamage, String compensationamount);
 	
-	@Modifying
-	@Transactional
-	@Query( value = "DELETE FROM `insurancecardsystem1`.`insurance_liability`\r\n"
-			+ "WHERE id = ?1", nativeQuery = true)
-	public void deleteLiability(String id);
 }

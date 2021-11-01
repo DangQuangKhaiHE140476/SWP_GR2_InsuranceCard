@@ -25,7 +25,7 @@ public class Payment {
 	private Contract contract;
 	
 	@OneToOne
-	@JoinColumn(name = "punishmentid", nullable = false)
+	@JoinColumn(name = "punishmentid", nullable = true)
 	private Punishment punishment;
 	
 	@ManyToOne

@@ -21,7 +21,7 @@ public class ManageInsuranceLiabilityController {
 	@RequestMapping("/showliability")
 	public ModelAndView getAllLiabilities() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("liabilities", liabilityService.getAllInsuranceLiability());
+		mv.addObject("liabilities", liabilityService.getAllInsuranceLiabilities());
 		mv.setViewName("showliabilities");
 		return mv;
 	}
