@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="com.example.demo.model.Package"%>
+<%@page import="java.util.ArrayList"%>
 <html lang="en">
 
 <head>
@@ -120,44 +122,45 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+				<div class="container-fluid">
+					<%ArrayList<Package> packageList = (ArrayList<Package>) request.getAttribute("packageList");%>
+					<%for (Package p : packageList) {%>
+					<div class="card shadow mb-4 col-lg-8">
+						<div class="card-body">
+							<div class="row py-3">
+								<div class="col-lg-2">Vehicle type</div>
+								<div>
+									<%=p.getVehicleType().getVehicletype()%>
+								</div>
+							</div>
 
-                    <div class="list-group col-lg-8">
-                        <div class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="row py-3">
-                                <div class="col-lg-2">Vehicle type</div>
-                                <div>
-                                    
-                                </div>
-                            </div>
+							<div class="row py-3">
+								<div class="col-lg-2">Price</div>
+								<div>
+									<%=p.getPrice()%>
+									VND
+								</div>
+							</div>
 
-                            <div class="row py-3">
-                                <div class="col-lg-2">Price</div>
-                                <div>
-                                    
-                                </div>
-                            </div>
+							<div class="row py-3">
+								<div class="col-lg-2">Duration</div>
+								<div>
+									<%=p.getDuration()%>
+								</div>
+							</div>
 
-                            <div class="row py-3">
-                                <div class="col-lg-2">Duration</div>
-                                <div>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="row pt-3 pb-5">
-                                <div class="col-lg-2">Insurance type</div>
-                                <div>
-                                    
-                                </div>
-                            </div>
-                            <a href="#"><button type="button" class="btn btn-primary btn-lg btn-block">View detail</button></a>
-                        </div>
-                        
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
+							<div class="row pt-3 pb-5">
+								<div class="col-lg-2">Insurance type</div>
+								<div>
+									<%=p.getInsuranceType().getInsurancetype()%>
+								</div>
+							</div>
+							<a href="/contractpackage?id=<%=p.getId()%>"><button type="button" class="btn btn-primary btn-lg btn-block">View detail</button></a>
+						</div>	
+					</div>
+                    <%} %>
+				</div>
+				<!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->

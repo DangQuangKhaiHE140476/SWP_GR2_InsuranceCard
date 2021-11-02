@@ -32,50 +32,51 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar">
-        <!-- Sidebar - Brand -->
-        <a
-            class="sidebar-brand d-flex align-items-center justify-content-center"
-            href="/adminhome">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-motorcycle fa-sm"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">Insurance Card</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
-
-        <li class="nav-item"><a class="nav-link" href="/showpackagelist">
-                <i class="fas fa-file-contract fa-lg"></i>
-                <span>Manage package</span>
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customermenu">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-motorcycle fa-sm"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Insurance Card</div>
             </a>
-        </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
 
-        <li class="nav-item">
-            <a class="nav-link" href="/showliability">
-                <i class="fas fa-file-contract fa-lg"></i>
-                <span>Manage Insurance liability</span>
-            </a>
-        </li>
+            <!-- Nav Item - Profile -->
+            <li class="nav-item"><a class="nav-link" href="/customerviewprofile">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
+                    <span>View Profile</span>
+                </a></li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
 
-        <li class="nav-item"><a class="nav-link" href="/showstafflist"> 
-                <i class="fas fa-file-contract fa-lg"></i>
-                <span>Manage Staff</span>
-            </a>
-        </li>
+            <!-- Nav Item - History-->
+            <li class="nav-item"><a class="nav-link" href="/historymenu">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
+                    <span>History</span>
+                </a></li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
-    </ul>
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Nav Item - Contract Package List -->
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist"> <i class="fas fa-file-contract fa-lg"></i>
+                    <span>Contract Package List	</span></a></li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+            
+            <!-- Nav Item - Contract List -->
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
+                    <span>Your Contract List	</span></a></li>
+
+            <!-- Divider -->
+
+            <hr class="sidebar-divider" />
+        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -217,11 +218,11 @@
                     
                     <div class="col-lg-4">
                         <div class="col-lg-offset-2 py-2">
-                            <a href="editpackage?id=<%=p.getId()%>"><button type="button" class="btn btn-primary btn-lg btn-block">Edit package</button></a>
+                            <a href="/requestnewcontract?id=<%=p.getId()%>"><button type="button" class="btn btn-primary btn-lg btn-block">Buy this contract</button></a>
                         </div>
                         
                         <div class="col-lg-offset-2 py-2">
-                            <a href="showpackagelist"><button type="button" class="btn btn-danger btn-lg btn-block">Back</button></a>
+                            <a href="contractpackagelist"><button type="button" class="btn btn-danger btn-lg btn-block">Back</button></a>
                         </div>
                     </div>
                 </div>

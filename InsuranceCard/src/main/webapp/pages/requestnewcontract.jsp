@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="com.example.demo.model.VehicleType"%>
+<%@page import="com.example.demo.model.InsuranceLiability"%>
+<%@page import="java.util.List"%>
+<%@page import="com.example.demo.model.Package"%>
 <html lang="en">
 
 <head>
@@ -159,9 +163,12 @@
                                             <label for="vehicletype" class="col-lg-2 col-sm-2 control-label text-right">Vehicle type</label>
                                             <div class="col-lg-10">
                                                 <select class="form-control m-b-10" name="vehicletype">
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
+                                                    <%List<VehicleType> vehicleList = (List<VehicleType>) request.getAttribute("vehicleTypes");%>
+                                                    <%for(VehicleType vt:vehicleList){ %>
+                                                    <option value="<%=vt.getId()%>">
+                                                        <%=vt.getVehicletype() %>
+                                                    </option>
+                                                    <%} %>
                                                 </select>
                                             </div>
                                         </div>
@@ -186,7 +193,7 @@
                                         <div class="form-group row pt-3">
                                             <label for="registerdate" class="col-lg-2 col-sm-2 control-label text-right">Register date</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="registerdate">
+                                                <input type="date" class="form-control" name="registerdate">
                                             </div>
                                         </div>
                                         <div class="form-group row pt-3">
@@ -221,11 +228,17 @@
 												</thead>
 
 												<tbody>
+													<%
+													Package p = (Package)request.getAttribute("package");
+													List<InsuranceLiability> ll = p.getInsuranceLiabilities();
+													for (InsuranceLiability il : ll) {
+													%>
 													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
+														<td><%=il.getId()%></td>
+														<td><%=il.getLevelDamage()%></td>
+														<td><%=il.getCompensationAmount()%></td>
 													</tr>
+													<%}%>
 												</tbody>
 											</table>
                                         </div>
