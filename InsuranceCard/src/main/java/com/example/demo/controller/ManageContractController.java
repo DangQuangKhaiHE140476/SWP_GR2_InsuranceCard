@@ -40,6 +40,7 @@ public class ManageContractController {
 		this.requestService = requestService;
 	}
 	
+	// Tuan Anh start
 	@RequestMapping("/showcontractlist")
 	public ModelAndView getContractByUser() {
 		ModelAndView mv = new ModelAndView();
@@ -80,4 +81,6 @@ public class ManageContractController {
 		
 		return new ModelAndView("redirect:/showcontractlist");
 	}
+	
+	// End
 }
