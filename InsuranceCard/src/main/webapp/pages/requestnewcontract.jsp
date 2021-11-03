@@ -129,20 +129,20 @@
                     <div class="col-lg-8">
                         <div class="card shadow mb-4">
                             <div class="card-body">
-                                <form class="form-horizontal" role="form">
+                                <form class="form-horizontal" role="form" action="request">
                                     <div>
                                         <h5>User information</h5>
                                         <div class="row py-3">
                                             <div class="col-lg-2">User name</div>
                                             <div>
-                                
+                                                <input type="hidden" class="form-control" name="userid" value="">
                                             </div>
                                         </div>
                                 
                                         <div class="row py-3">
                                             <div class="col-lg-2">Create date</div>
                                             <div>
-                                
+                                                <input type="hidden" class="form-control" name="createdate" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -241,6 +241,7 @@
 													<%}%>
 												</tbody>
 											</table>
+											<input type="hidden" class="form-control" name="packageid" value="<%=p.getId()%>">
                                         </div>
                                     </div>
                                     <div class="form-group row">

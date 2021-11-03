@@ -151,14 +151,14 @@
                                     <div class="form-group row">
                                         <label for="Price" class="col-lg-2 control-label">Price</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="Price" placeholder="<%=p.getPrice()%>">
+                                            <input type="text" class="form-control" name="Price" placeholder="<%=p.getPrice()%>">
                                         </div>
                                         <span class="align-text-bottom">VND</span>
                                     </div>
                                     <div class="form-group row">
                                         <label for="Duration" class="col-lg-2 control-label">Duration</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="Duration" placeholder="<%=p.getDuration()%>">
+                                            <input type="text" class="form-control" name="Duration" placeholder="<%=p.getDuration()%>">
                                         </div>
                                     </div>
                                     <div class="form-group row">

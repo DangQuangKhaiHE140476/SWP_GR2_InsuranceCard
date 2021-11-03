@@ -60,4 +60,19 @@ public class PackageService {
 		p.setInsuranceLiabilities(liabilityList);
 		packageRepo.save(p);
 	}
+	
+	public void editPackage(String id,
+			String VehicleType,
+			String Price,
+			String Duration,
+			String InsuranceType,
+			String [] liabilities) {
+		int PriceNum = Integer.parseInt(Price);
+		packageRepo.updatePackage(id, Duration, PriceNum , InsuranceType, VehicleType);
+		
+		packageRepo.deletePackageInsuranceLiability(id);
+		for(String liabilitylist:liabilities) {
+			packageRepo.insertPackageInsuranceLiability(id, liabilitylist);
+		}
+	}
 }
