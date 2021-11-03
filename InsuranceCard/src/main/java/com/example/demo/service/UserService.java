@@ -42,5 +42,8 @@ public class UserService {
 		return repo.getStaff(id);
 	}
 	
+	public ArrayList<User> getUser(String id){
+		return repo.getUser(id);
+	}
 	//add a method for update, with validate as addNewStaff
 }

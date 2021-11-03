@@ -1,3 +1,10 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.example.demo.model.Contract"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Accident History</title>
+    <title>Contract list</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -91,7 +98,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-                            Accident History</h1>
+                            Contract list</h1>
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -130,68 +137,50 @@
 
                 <!-- Begin Page Content -->
                 <!--Contract-->
-                <div class="row justify-content-center">
-                    <!--Contract  function-->
-                    <!--End of Contract function-->
-                    <!--Detail function-->
-                    <div class="col-lg-3">
-                        <div class="card shadow mb-4">
-                          <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-primary">
-                              History
-                            </h5>
-                          </div>
-                          <div class="card-body">
-                            <!-- Nav Item - Compensation -->
-                            <a class="nav-link py-0" href="index.html">
-                              <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-                              <span>Payment History</span>
-                            </a>
-            
-                            <!-- Divider -->
-                            <hr class="sidebar-divider" />
-            
-                            <!-- Nav Item - Cancel -->
-                            <a class="nav-link py-0" href="index.html">
-                              <span>Accident History</span></a>
-            
-                            <!-- Divider -->
-                            <hr class="sidebar-divider" />
-            
-                            <!-- Nav Item - Renew -->
-                            <a class="nav-link py-0" href="index.html">
-                              <span>Punishment History</span></a>
-            
-                            <!-- Divider -->
-                            <hr class="sidebar-divider" />
-            
-                            <!-- Nav Item - Request -->
-                            <a class="nav-link py-0" href="index.html">
-                              <span>Compensation History</span></a>
-                          </div>
-                        </div>
-                      </div>
+                <div class="row justify-content-center">                   
                     <div class="col-lg-8">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">History table</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Contract list</h6>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>ContractID</th>
-                                                <th>Accident Date</th>
-                                                <th>damage</th>
-                                                <th>Police</th>
-                                                <th>Hospital</th>
-                                                <th>status</th>
+                                                <th>Creation Date</th>
+                                                <th>Expiration Date</th>
+                                                <th>Duration</th>
+                                                <th>Type of Vehicle</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        </tbody>
+                                        <%ArrayList<Contract> contractList = (ArrayList<Contract>) request.getAttribute("contractList");%>
+                                        <%for(Contract c:contractList){ %>
+										<tr>
+											<td>
+											    <a class="nav-link" href="/contractpackage?id=<%=c.getId()%>"> 
+											        <span><%=c.getId()%></span>
+											    </a>
+											</td>
+											<%
+									        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); %>
+											<td><%=formatter.format(c.getCreationdate())%></td>
+									
+											
+											<td></td>
+											
+											<td><%=c.getPackage_().getDuration()%></td>
+											<td><%=c.getVehicle().getVehicleType().getVehicletype()%></td>
+											<td><%=c.getContractStatus().getStatus()%></td>
+											
+										</tr>
+										<%
+										}
+										%>
+                                    </tbody>
                                     </table>
                                 </div>
                             </div>
