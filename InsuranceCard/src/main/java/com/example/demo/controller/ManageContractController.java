@@ -48,11 +48,11 @@ public class ManageContractController {
 		return mv;
 	}
 	
-	@RequestMapping("/contractpackage")
+	@RequestMapping("/contractuserpackage")
 	public ModelAndView getContractByID(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("contract", service.getContractByID(id));
-		mv.setViewName("contractpackages");
+		mv.setViewName("contractuserpackage");
 		return mv;
 	}
 	
