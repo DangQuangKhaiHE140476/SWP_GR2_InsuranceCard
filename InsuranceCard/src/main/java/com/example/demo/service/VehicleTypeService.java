@@ -22,4 +22,8 @@ public class VehicleTypeService {
 	public List<VehicleType> getAllVehicleType(){
 		return vehicleTypeRepo.findAll();
 	}
+	
+	public VehicleType getVehicleType(Long id) {
+		return vehicleTypeRepo.getById(id);
+	}
 }

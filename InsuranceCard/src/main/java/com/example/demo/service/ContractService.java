@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.ContractRepo;
 import com.example.demo.dao.ContractStatusRepo;
 import com.example.demo.dao.PackageRepo;
+import com.example.demo.dao.UserRepo;
+import com.example.demo.dao.VehicleRepo;
 import com.example.demo.dao.VehicleTypeRepo;
 import com.example.demo.model.Contract;
 import com.example.demo.model.ContractStatus;
 import com.example.demo.model.Vehicle;
 import com.example.demo.model.Package;
+import com.example.demo.model.User;
 
 @Service
 public class ContractService {
@@ -22,19 +25,33 @@ public class ContractService {
 	private final VehicleTypeRepo vehicleTypeRepo;
 	private final PackageRepo packageRepo;
 	private final ContractStatusRepo contractStatusRepo;
+	private final UserRepo userRepo;
+	private final VehicleRepo vehicleRepo;
 
 	@Autowired
-	public ContractService(ContractRepo contractRepo, VehicleTypeRepo vehicleTypeRepo, PackageRepo packageRepo,
-			ContractStatusRepo contractStatusRepo) {
+    public ContractService(ContractRepo contractRepo, VehicleTypeRepo vehicleTypeRepo, PackageRepo packageRepo,
+			ContractStatusRepo contractStatusRepo, UserRepo userRepo, VehicleRepo vehicleRepo) {
 		super();
 		this.contractRepo = contractRepo;
 		this.vehicleTypeRepo = vehicleTypeRepo;
 		this.packageRepo = packageRepo;
 		this.contractStatusRepo = contractStatusRepo;
+		this.userRepo = userRepo;
+		this.vehicleRepo = vehicleRepo;
+	}
+
+	public Timestamp getCurrentDate() {
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		return ts;
+	}
+	
+	public String getUserName(String id) {
+		User u = userRepo.getCustomer(id).get(0);
+		String name = u.getName();
+		return name;
 	}
 
 	public void RequestNewContract(String userid,
-			String createdate,
 			String ownername,
 			String vehicletype,
 			String brand,
@@ -54,16 +71,18 @@ public class ContractService {
 		v.setRegistrationdate(date);;
 		v.setChassisnumber(chassisnember);
 		v.setLicenseplates(licienseplate);
+		vehicleRepo.save(v);
 		
 		Package p = packageRepo.getById(Long.parseLong(packageid));
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		ContractStatus cs = contractStatusRepo.getById(Long.valueOf("1"));
+		User u = userRepo.getCustomer(userid).get(0);
 		
 		Contract c = new Contract();
-		c.setUser(null);
+		c.setUser(u);
 		c.setVehicle(v);
 		c.setPackage_(p);
-		c.setCreationdate(ts);
+		c.setCreationdate(getCurrentDate());
 		c.setContractStatus(cs);
+		contractRepo.save(c);
 	}
 }

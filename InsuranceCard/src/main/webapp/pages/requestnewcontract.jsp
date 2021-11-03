@@ -135,14 +135,15 @@
                                         <div class="row py-3">
                                             <div class="col-lg-2">User name</div>
                                             <div>
-                                                <input type="hidden" class="form-control" name="userid" value="">
+                                                <%=request.getAttribute("username") %>
+                                                <input type="hidden" class="form-control" name="userid" value="1">
                                             </div>
                                         </div>
                                 
                                         <div class="row py-3">
                                             <div class="col-lg-2">Create date</div>
                                             <div>
-                                                <input type="hidden" class="form-control" name="createdate" value="">
+                                                <%=request.getAttribute("currentdate") %>
                                             </div>
                                         </div>
                                     </div>
@@ -161,17 +162,12 @@
                                         </div>
                                         <div class="form-group row pt-3">
                                             <label for="vehicletype" class="col-lg-2 col-sm-2 control-label text-right">Vehicle type</label>
-                                            <div class="col-lg-10">
-                                                <select class="form-control m-b-10" name="vehicletype">
-                                                    <%List<VehicleType> vehicleList = (List<VehicleType>) request.getAttribute("vehicleTypes");%>
-                                                    <%for(VehicleType vt:vehicleList){ %>
-                                                    <option value="<%=vt.getId()%>">
-                                                        <%=vt.getVehicletype() %>
-                                                    </option>
-                                                    <%} %>
-                                                </select>
-                                            </div>
-                                        </div>
+											<div class="col-lg-10">
+												<%Package p = (Package) request.getAttribute("package");%>
+												<input class="form-control" type="text" name="vehicletype" placeholder="<%=p.getVehicleType().getVehicletype()%>" disabled>
+												<input class="form-control" type="hidden" name="vehicletype" value="<%=p.getVehicleType().getId()%>">
+											</div>
+										</div>
                                         <div class="form-group row pt-3">
                                             <label for="brand" class="col-lg-2 col-sm-2 control-label text-right">Brand</label>
                                             <div class="col-lg-10">
@@ -229,7 +225,6 @@
 
 												<tbody>
 													<%
-													Package p = (Package)request.getAttribute("package");
 													List<InsuranceLiability> ll = p.getInsuranceLiabilities();
 													for (InsuranceLiability il : ll) {
 													%>
