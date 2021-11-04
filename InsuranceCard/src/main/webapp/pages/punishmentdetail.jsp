@@ -1,3 +1,5 @@
+<%@page import="com.example.demo.model.Punishment"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -71,7 +73,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
                 <span>Your contract list</span></a></li>
 
         </ul>
@@ -133,31 +135,79 @@
                 <!-- Begin Page Content -->
                 <!--Contract-->
                 <div class="row justify-content-center">                   
-                      <div class="col-lg-5">
+                      <div class="col-lg-6">
                         <div class="card shadow mb-4">
                           <div class="card-header py-3">
                             <h5 class="m-0 font-weight-bold text-primary">
                               Punishment details
                             </h5>
                           </div>
+                          <%ArrayList<Punishment> list = (ArrayList<Punishment>)request.getAttribute("punishment"); %>
                           <div class="card-body">
-                            <h5 class="h5 mb-1 text-gray-1000">Id</h5>
-                            <hr class="sidebar-divider" />
-                            <h5 class="h5 mb-1 text-gray-1000">ContractID</h5>
-                            <hr class="sidebar-divider" />
-                            <h5 class="h5 mb-1 text-gray-1000">Amount</h5>
-                            <hr class="sidebar-divider" />
-                            <h5 class="h5 mb-1 text-gray-1000">Reason</h5>
-                            <hr class="sidebar-divider" />
-                            <h5 class="h5 mb-1 text-gray-1000">Status</h5>
-                            <hr class="sidebar-divider" />
-                            <h5 class="h5 mb-1 text-gray-1000">Deadline</h5>
+                          		<div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">Id</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getId() %></h5>
+                                    </div>
+                                </div>
+                                <hr class="sidebar-divider" />
+                                <div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">ContractID</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000">
+                                        <a class="nav-link" href="/contractuserpackage?id=<%=list.get(0).getContract().getId()%>" style="padding:0"> 
+											        <%=list.get(0).getContract().getId()%>
+											    </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <hr class="sidebar-divider" />
+                                <div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">Amount</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getAmount()%></h5>
+                                    </div>
+                                </div>
+                                <hr class="sidebar-divider" />
+                                <div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">Reason</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getReason()%></h5>
+                                    </div>
+                                </div>
+                                <hr class="sidebar-divider" />
+                                <div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">Status</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getPunishmentStatus().getStatus() %></h5>
+                                    </div>
+                                </div>
+                                <hr class="sidebar-divider" />
+                                <div class="row py-3">
+                                    <div class="col-lg-3">
+                                        <h5 class="h5 mb-1 text-gray-1000">Deadline</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getDeadline()%></h5>
+                                    </div>
+                                </div>                                                      
+                            
                           </div>
                         </div>
                       </div>
                       <div class="container text-center">
-                        <button type="submit" class="btn btn-primary text-center">Pay your fine</button>
-                        <a class="btn btn-primary" href="showstafflist" role="button">Back to punishment list</a>
+                        <a class="btn btn-primary" href="payfine?punishid=<%=list.get(0).getId()%>&&id=<%=list.get(0).getContract().getId()%>" role="button">Pay your fine</a>
+                        <a class="btn btn-primary" href="/punishmenthistory" role="button">Back to punishment list</a>
                         </div>
                 </div>
 

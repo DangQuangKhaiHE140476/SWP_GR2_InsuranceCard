@@ -1,3 +1,5 @@
+<%@page import="com.example.demo.model.Punishment"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -71,7 +73,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
                 <span>Your contract list</span></a></li>
 
         </ul>
@@ -161,7 +163,7 @@
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Renew -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="/punishmenthistory">
                               <span>Punishment History</span></a>
             
                             <!-- Divider -->
@@ -189,7 +191,16 @@
                                                 <th>deadline</th>
                                             </tr>
                                         </thead>
+                                        <%ArrayList<Punishment> list = (ArrayList<Punishment>)request.getAttribute("punishments"); %>
                                         <tbody>
+                                        <%for(Punishment p:list) {%>
+                                        		<tr>                                       		
+                                        		<td><a href="/punishmentdetail?id=<%=p.getId()%>"><%=p.getId()%></a></td>
+                                        		<td><%=p.getAmount()%></td>
+                                        		<td><%=p.getPunishmentStatus().getStatus()%></td>
+                                        		<td><%=p.getDeadline()%></td>
+                                        		</tr>
+                                        <%} %>
                                         </tbody>
                                     </table>
                                 </div>
