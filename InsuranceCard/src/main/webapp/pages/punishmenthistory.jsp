@@ -147,7 +147,7 @@
                           </div>
                           <div class="card-body">
                             <!-- Nav Item - Compensation -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="paymenthistory">
                               <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                               <span>Payment History</span>
                             </a>

@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,9 @@ public class PaymentService {
 	
 	public void addPayment(Payment p) {
 		repo.save(p);
+	}
+	
+	public ArrayList<Payment> getPaymentByContractID(String id){
+		return repo.getPaymentByContractID(id);
 	}
 }

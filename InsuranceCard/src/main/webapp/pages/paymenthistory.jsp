@@ -1,3 +1,5 @@
+<%@page import="com.example.demo.model.Payment"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Show staff list</title>
+    <title>Payment history</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,7 +73,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
                 <span>Your contract list</span></a></li>
 
         </ul>
@@ -161,7 +163,7 @@
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Renew -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="punishmenthistory">
                               <span>Punishment History</span></a>
             
                             <!-- Divider -->
@@ -191,7 +193,22 @@
                                                 <th>Amount</th>
                                             </tr>
                                         </thead>
+                                        <%ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("payments");%>
                                         <tbody>
+                                        	<%for(Payment p:list){ %>
+                                        	<tr>
+                                        		<td><%=p.getId()%></td>
+                                        		<td><a href="/contractuserpackage?id=<%=p.getContract().getId()%>"> 
+											        <%=p.getContract().getId()%>
+											    </a></td>
+											    <td><a href="/punishmentdetail?id=<%=p.getPunishment().getId()%>"> 
+											        <%=p.getPunishment().getId()%>
+											    </a></td>
+											    <td><%=p.getPaymentType().getType()%></td>
+											    <td><%=p.getPaymentdate()%></td>
+											    <td><%=p.getPunishment().getAmount()%></td>
+                                        	</tr>
+                                        	<%}%>
                                         </tbody>
                                     </table>
                                 </div>

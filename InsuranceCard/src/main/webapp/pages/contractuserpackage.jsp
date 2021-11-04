@@ -75,7 +75,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider" />
             
-            <li class="nav-item"><a class="nav-link" href="/showstafflist">
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist">
                     <i class="fas fa-file-contract fa-lg"></i>
                     <span>Your contract list</span>
                 </a>
