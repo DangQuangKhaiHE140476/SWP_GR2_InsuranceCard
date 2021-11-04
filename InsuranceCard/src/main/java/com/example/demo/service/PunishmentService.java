@@ -16,6 +16,10 @@ public class PunishmentService {
 		this.repo = repo;
 	}
 	
+	public void addPunishment(Punishment p) {
+		repo.save(p);
+	}
+	
 	public ArrayList<Punishment> getPunishmentByContractID(String id){
 		return repo.getPunishmentByContractID(id);
 	}
