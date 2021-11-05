@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.RequestType;
-import com.example.demo.model.User;
 
 public interface RequestTypeRepo extends CrudRepository<RequestType, Long> {
 	

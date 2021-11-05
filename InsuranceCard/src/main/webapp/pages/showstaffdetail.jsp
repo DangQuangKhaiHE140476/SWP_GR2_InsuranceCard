@@ -161,8 +161,7 @@
                                 <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Username</h5>
                                 <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 224px;">${staff[0].getUsername()}</h5>
                                 <hr class="sidebar-divider" />
-                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Password</h5>
-                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 225px;">${staff[0].getPassword()}</h5>
+                                
                             </div>
                         </div>
                     </div>
@@ -190,7 +189,7 @@
     <a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+   
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

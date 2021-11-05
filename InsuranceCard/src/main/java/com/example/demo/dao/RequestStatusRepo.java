@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.RequestStatus;
-import com.example.demo.model.RequestType;
 
 public interface RequestStatusRepo extends CrudRepository<RequestStatus, Long> {
 

@@ -2,15 +2,15 @@ package com.example.demo.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.User;
 
 
-public interface UserRepo extends CrudRepository<User, Long> {
+public interface UserRepo extends JpaRepository<User, Long> {
 	@Modifying
 	@Transactional
 	@Query( value = "SELECT `user`.`id`,\r\n"
@@ -84,4 +84,6 @@ public interface UserRepo extends CrudRepository<User, Long> {
 			+ "FROM `insurancecardsystem1`.`user`\r\n"
 			+ "Where roleid=3 AND id = ?1", nativeQuery = true)
 	public ArrayList<User> getCustomer(String id);
+	
+	User findByUsername(String username);
 }

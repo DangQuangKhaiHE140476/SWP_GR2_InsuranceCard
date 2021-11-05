@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,7 +47,7 @@ public class ManageStaffController {
 		return "addstaff";
 	}
 
-	@RequestMapping("/addstaff")
+	@RequestMapping(method = RequestMethod.POST,value = "/addstaff")
 	public ModelAndView AddStaff(User user) {
 		ArrayList<Role> list = roleService.getAllRole();
 		for (Role role : list) {
@@ -72,7 +73,7 @@ public class ManageStaffController {
 		return mv;
 	}
 	
-	@RequestMapping("/updateStaff")
+	@RequestMapping(method = RequestMethod.POST,value = "/updateStaff")
 	public ModelAndView UpdateStaff(User user) {
 		ArrayList<Role> list = roleService.getAllRole();
 		for (Role role : list) {

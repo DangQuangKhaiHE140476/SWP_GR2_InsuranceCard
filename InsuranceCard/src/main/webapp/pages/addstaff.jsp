@@ -134,7 +134,7 @@
                               </h5>
                             </div>
                             <div class="card-body">                              
-                              <form action="/addstaff">
+                              <form action="/addstaff" method = 'POST'>
                                 <div class="form-group">
                                   <label for="Name" class="font-weight-bold">Name</label>
                                   <input type="text" class="form-control" id="Name" name="name" placeholder="Enter name">                     

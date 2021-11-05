@@ -44,7 +44,7 @@ public class User {
 	@Column(name = "username", unique = true, length = 30, nullable = false)
 	private String username;
 	
-	@Column(name = "password", length = 50, nullable = false)
+	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 	
 	@ManyToOne

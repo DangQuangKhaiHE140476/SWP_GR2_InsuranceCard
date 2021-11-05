@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.model.Contract;
 import com.example.demo.model.Punishment;
 
 public interface PunishmentRepo extends CrudRepository<Punishment, Long> {

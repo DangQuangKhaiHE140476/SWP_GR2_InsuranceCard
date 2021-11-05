@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserRepo;
@@ -19,11 +20,17 @@ public class UserService {
 		this.repo = repo;
 	}
 	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
 	public void addNewStaff(User user) {
 		//validate input for
 			//boundary (for length) of ssn, address, phone, email
 			//phone, ssn must contain only numbers
 			//use regex for email
+		String pass = passwordEncoder.encode(user.getPassword());
+		user.setPassword(pass);
+		
 		repo.save(user);
 	}
 	

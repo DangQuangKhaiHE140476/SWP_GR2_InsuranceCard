@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.PaymentType;
-import com.example.demo.model.RequestType;
 
 public interface PaymentTypeRepo extends CrudRepository<PaymentType, Long> {
 	@Modifying

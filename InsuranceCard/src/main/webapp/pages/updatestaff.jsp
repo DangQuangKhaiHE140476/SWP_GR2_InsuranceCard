@@ -139,7 +139,7 @@
                             <%ArrayList<User> list = (ArrayList<User>)request.getAttribute("staff");
     							User c = list.get(0);
     							%>                              
-                              <form action="/updateStaff">                              
+                              <form action="/updateStaff" method = 'POST'>                              
                                 <div class="form-group">
                                     <label for="id" class="font-weight-bold">Id</label>
                                     <input type="text" class="form-control" id="areadamage" name="id" value="<%=c.getId()%>" readonly>                     

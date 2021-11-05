@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.PaymentType;
 import com.example.demo.model.PunishmentStatus;
 
 public interface PunishmentStatusRepo extends CrudRepository<PunishmentStatus, Long> {

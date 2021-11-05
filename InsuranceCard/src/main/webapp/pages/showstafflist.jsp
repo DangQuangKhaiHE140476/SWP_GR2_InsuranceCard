@@ -147,7 +147,6 @@
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>username</th>
-                                                <th>password</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,7 +158,6 @@
 												<td><a href="/showstaffdetail?id=<%=c.getId()%>"><%=c.getId()%></a></td>
 												<td><%=c.getName()%></td>
 												<td><%=c.getUsername()%></td>
-												<td><%=c.getPassword()%></td>
 											</tr>
 											<%
 											}
