@@ -144,6 +144,7 @@
                             <div class="card-body">
                                 <%Package p = (Package)request.getAttribute("package"); %>
                                 <form class="form-horizontal" role="form" action="edit">
+                                    <input type="hidden" name="id" value="<%=p.getId()%>">
                                     <div class="form-group row">
                                         <label for="Vehicletype" class="col-lg-2 control-label">Vehicle type</label>
                                         <div class="col-lg-8">
@@ -160,14 +161,14 @@
                                     <div class="form-group row">
                                         <label for="Price" class="col-lg-2 control-label">Price</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="Price" placeholder="<%=p.getPrice()%>">
+                                            <input type="number" class="form-control" name="Price" placeholder="<%=p.getPrice()%>" value="<%=p.getPrice()%>">
                                         </div>
                                         <span class="align-text-bottom">VND</span>
                                     </div>
                                     <div class="form-group row">
                                         <label for="Duration" class="col-lg-2 control-label">Duration</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="Duration" placeholder="<%=p.getDuration()%>">
+                                            <input type="text" class="form-control" name="Duration" placeholder="<%=p.getDuration()%>" value="<%=p.getDuration()%>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
