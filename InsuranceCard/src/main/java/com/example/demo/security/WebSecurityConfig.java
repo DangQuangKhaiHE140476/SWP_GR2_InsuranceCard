@@ -70,8 +70,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		"/viewaddliability",
         		"/addliability")
         	.hasAnyAuthority("ADMIN")
-        .antMatchers("/customermenu").hasAnyAuthority("CUSTOMER")
-        .antMatchers("/staff/**").hasAnyAuthority("STAFF")
+        .antMatchers("/customermenu",
+        		"/viewprofile",
+        		"/historymenu",
+        		"/contractpackagelist",
+        		"/showcontractlist")
+        	.hasAnyAuthority("CUSTOMER")
+        .antMatchers("/staff/**")
+        	.hasAnyAuthority("STAFF")
         .anyRequest().authenticated()
         .and()
         .formLogin()

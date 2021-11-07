@@ -1,5 +1,14 @@
 package com.example.demo.common;
 
-public class StringUtils {
+import org.springframework.stereotype.Service;
 
+@Service
+public class StringUtils {
+//	public static void main(String[] args) {  
+//		String str="true";  
+//		System.out.println(convertStringToSQLDate(str));
+//	} 
+	public boolean convertStringToBoolean(String gender) {
+		return Boolean.parseBoolean(gender);
+	}
 }

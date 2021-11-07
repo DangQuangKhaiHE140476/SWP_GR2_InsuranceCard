@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -86,4 +87,26 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	public ArrayList<User> getCustomer(String id);
 	
 	User findByUsername(String username);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE `insurancecardsystem1`.`user`\r\n"
+			+ "SET\r\n"
+			+ "`name` = ?1,\r\n"
+			+ "`socialsercuritynumber` = ?2,\r\n"
+			+ "`dob` = ?3,\r\n"
+			+ "`gender` = ?4,\r\n"
+			+ "`address` = ?5,\r\n"
+			+ "`phonenumber` = ?6,\r\n"
+			+ "`email` = ?7\r\n"
+			+ "WHERE `id` = ?8", nativeQuery = true)
+	public void updateUserProfile(
+			String name, 
+			String ssn, 
+			Date dob, 
+			boolean gender, 
+			String address, 
+			String phonenumber, 
+			String email,
+			String id);
 }

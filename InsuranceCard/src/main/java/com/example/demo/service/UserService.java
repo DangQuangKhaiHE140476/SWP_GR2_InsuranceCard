@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.DateUtils;
+import com.example.demo.common.StringUtils;
 import com.example.demo.dao.UserRepo;
 import com.example.demo.model.User;
 
@@ -13,21 +16,26 @@ import com.example.demo.model.User;
 public class UserService {
 	
 	private final UserRepo repo;
-	
+	private final DateUtils dateUtils;
+	private final StringUtils stringUtils;
 	@Autowired
-	public UserService(UserRepo repo) {
-		super();
+	public UserService(UserRepo repo, DateUtils dateUtils, StringUtils stringUtils) {
 		this.repo = repo;
+		this.dateUtils = dateUtils;
+		this.stringUtils = stringUtils;
 	}
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
+	
+
 	public void addNewStaff(User user) {
 		//validate input for
 			//boundary (for length) of ssn, address, phone, email
 			//phone, ssn must contain only numbers
 			//use regex for email
+		//Encrypt password before saving to DB
 		String pass = passwordEncoder.encode(user.getPassword());
 		user.setPassword(pass);
 		
@@ -52,5 +60,19 @@ public class UserService {
 	public ArrayList<User> getUser(String id){
 		return repo.getUser(id);
 	}
-	//add a method for update, with validate as addNewStaff
+
+	public void updateUserProfile(
+			String id, 
+			String name, 
+			String ssn, 
+			String dob, 
+			String gender, 
+			String address, 
+			String phonenumber, 
+			String email) {
+		
+		Date sqlDateDOB = dateUtils.convertStringToSQLDate(dob);
+		boolean parsedGender = stringUtils.convertStringToBoolean(gender);
+		repo.updateUserProfile( name, ssn, sqlDateDOB, parsedGender, address, phonenumber, email,id);
+	}
 }

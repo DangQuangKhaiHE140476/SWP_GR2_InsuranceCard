@@ -12,9 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Contract;
 import com.example.demo.model.Payment;
-import com.example.demo.model.PaymentType;
 import com.example.demo.model.Punishment;
-import com.example.demo.model.PunishmentStatus;
 import com.example.demo.service.ContractUserService;
 import com.example.demo.service.PaymentService;
 import com.example.demo.service.PaymentTypeService;

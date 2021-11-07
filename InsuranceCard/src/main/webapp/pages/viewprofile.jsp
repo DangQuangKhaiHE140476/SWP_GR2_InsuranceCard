@@ -1,6 +1,4 @@
-<%@page import="com.example.demo.model.InsuranceLiability"%>
 <%@page import="com.example.demo.model.User"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Edit Insurance Liability</title>
+    <title>Profile</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +31,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/customermenu">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-motorcycle fa-sm"></i>
                 </div>
@@ -44,9 +42,9 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
-                    <span>Manage package</span>
+                    <span>View Profile</span>
                 </a></li>
 
             <!-- Divider -->
@@ -58,20 +56,28 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="/showliability">
+            <li class="nav-item"><a class="nav-link" href="/historymenu">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
-                    <span>Manage Insurance Liability</span>
+                    <span>History</span>
                 </a></li>
 
             <!-- Divider -->
 
-            <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
-                    <span>Manage staff</span></a></li>
+            <!-- Nav Item - Contract Package List -->
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist"> <i class="fas fa-file-contract fa-lg"></i>
+                    <span>Contract Package List</span></a></li>
 
             <!-- Divider -->
 
             <hr class="sidebar-divider" />
+
+            <!-- Nav Item - Your Contract List -->
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
+                <span>Your Contract List</span></a></li>
+
+        <!-- Divider -->
+
+        <hr class="sidebar-divider" />
         </ul>
         <!-- End of Sidebar -->
 
@@ -91,7 +97,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-                            Edit Insurance Liability </h1>
+                            Profile </h1>
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -100,26 +106,27 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="#"
                                 id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">
-								<%
+                                aria-expanded="false"> 
+                                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                  	<%
 										User user = (User) request.getAttribute("user");
 									%>
 									${user.getUsername()}
-								</span> <img
-                                    class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                   </span> 
+                                   <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a> <!-- Dropdown - User Information -->
                             <div class="
                     dropdown-menu dropdown-menu-right
                     shadow
                     animated--grow-in
                   " aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/changepassword"> <i
-                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change
-                                    password
+                                <a class="dropdown-item" href="/viewprofile"> <i
+                                        class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+                                </a> <a class="dropdown-item" href="/changepassword"> <i
+                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change password
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/logout"> <i
+                                <a class="dropdown-item" href="/logout""> <i
                                         class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -135,37 +142,39 @@
                     <div class="col-lg-6">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                              <h5 class="m-0 font-weight-bold text-primary">
-                                Fill in the changes
-                              </h5>
+                                <h5 class="m-0 font-weight-bold text-primary">
+                                    Your profile
+                                </h5>
                             </div>
                             <div class="card-body">
-                            <%ArrayList<InsuranceLiability> list = (ArrayList<InsuranceLiability>)request.getAttribute("liabilities");
-    							InsuranceLiability liability = list.get(0);
-    							%>                              
-                              <form action="/updateLiability" method ='POST'>                              
-                                <div class="form-group">
-                                    <label for="id" class="font-weight-bold">Id</label>
-                                    <input type="text" class="form-control" id="id" name="id" value="<%=liability.getId()%>" readonly>                     
-                                </div>
-                                <div class="form-group">
-                                  <label for="leveldamage" class="font-weight-bold">Level Damage</label>
-                                  <input type="text" class="form-control" id="leveldamage" name="leveldamage" value="<%=liability.getLevelDamage()%>">                     
-                                </div>
-            
-                                <div class="form-group">
-                                  <label for="compensationamount" class="font-weight-bold">Compensation Amount</label>
-                                  <input type="number" class="form-control" id="compensationamount" name="compensationamount" value="<%=liability.getCompensationAmount()%>">
-                                </div>
-            
-                                
-                                <div class="container text-center">
-                                <button type="submit" class="btn btn-primary text-center">Save</button>
-                                <a class="btn btn-primary" href="/showliability" role="button">Back</a>
-                                </div>
-                            </form>
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Name</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 260px;">${user.getName()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Social security number</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 110px;">${user.getSocialsercuritynumber()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Date of birth</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 202px;">${user.getDob()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Gender</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 250px;"><%=(user.isGender() == true?"Male":"Female")%></h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Address</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 241px;">${user.getAddress()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Phone number</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 183px;">${user.getPhonenumber()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Email</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 265px;">${user.getEmail()}</h5>
+                                <hr class="sidebar-divider" />
+                                <h5 class="h5 mb-1 text-gray-1000 d-inline-block">Username</h5>
+                                <h5 class="h5 text-gray-1000 d-inline-block" style="margin-left: 224px;">${user.getUsername()}</h5>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <a class="btn btn-primary" href="/vieweditprofile?id=${user.getId()}" role="button">Edit</a>
                     </div>
                 </div>
 

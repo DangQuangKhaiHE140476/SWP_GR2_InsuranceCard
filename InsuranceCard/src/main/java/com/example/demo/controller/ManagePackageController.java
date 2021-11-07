@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.User;
 import com.example.demo.service.InsuranceLiabilityService;
 import com.example.demo.service.InsuranceTypeService;
 import com.example.demo.service.PackageService;
@@ -13,6 +16,9 @@ import com.example.demo.service.VehicleTypeService;
 
 @Controller
 public class ManagePackageController {
+	@Autowired
+	private HttpSession session;
+	
 	private final PackageService packageService;
 	private final VehicleTypeService vehicleTypeService;
 	private final InsuranceTypeService insuranceTypeService;
@@ -31,6 +37,8 @@ public class ManagePackageController {
 	@RequestMapping("/showpackagelist")
 	public ModelAndView ShowPackageList() {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		mv.addObject("user",user);
 		mv.addObject("packageList", packageService.getAllPackages());
 		mv.setViewName("showpackagelist");
 		return mv;
@@ -39,6 +47,8 @@ public class ManagePackageController {
 	@RequestMapping("/showpackage{id}")
 	public ModelAndView ShowPackage(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		mv.addObject("user",user);
 		mv.addObject("package", packageService.getPackageById(id));
 		mv.setViewName("showpackage");
 		return mv;
@@ -47,6 +57,8 @@ public class ManagePackageController {
 	@RequestMapping("/addpackage")
 	public ModelAndView AddPackage() {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		mv.addObject("user",user);
 		mv.addObject("vehicleTypes", vehicleTypeService.getAllVehicleType());
 		mv.addObject("insuraceTypes", insuranceTypeService.getAllInsuranceType());
 		mv.addObject("insuranceLiabilities", insuranceLiabilityService.getAllInsuranceLiabilities());
@@ -69,6 +81,8 @@ public class ManagePackageController {
 	@RequestMapping("/editpackage{id}")
 	public ModelAndView EditPackage(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		mv.addObject("user",user);
 		mv.addObject("package", packageService.getPackageById(id));
 		mv.addObject("vehicleTypes", vehicleTypeService.getAllVehicleType());
 		mv.addObject("insuraceTypes", insuranceTypeService.getAllInsuranceType());
