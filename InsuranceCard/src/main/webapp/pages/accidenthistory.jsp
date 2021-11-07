@@ -1,3 +1,5 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Accident"%>
 <%@page import="java.util.ArrayList"%>
@@ -50,7 +52,7 @@
 			<hr class="sidebar-divider my-0" />
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="/showpackagelist">
+			<li class="nav-item"><a class="nav-link" href="/viewprofile">
 					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
 					class="fas fa-tachometer-alt"></i> <span>View profile</span>
 			</a></li>
@@ -64,7 +66,7 @@
             </div> -->
 
 			<!-- Nav Item - Profile-->
-			<li class="nav-item"><a class="nav-link" href="/showliability">
+			<li class="nav-item"><a class="nav-link" href="/historymenu">
 					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
 					class="far fa-user-circle fa-lg"></i> <span>History</span>
 			</a></li>
@@ -72,7 +74,7 @@
 			<!-- Divider -->
 
 			<!-- Nav Item - History -->
-			<li class="nav-item"><a class="nav-link" href="/showstafflist">
+			<li class="nav-item"><a class="nav-link" href="/contractpackagelist">
 					<i class="fas fa-file-contract fa-lg"></i> <span>Contract
 						package list</span>
 			</a></li>
@@ -183,7 +185,7 @@
 								<hr class="sidebar-divider" />
 
 								<!-- Nav Item - Request -->
-								<a class="nav-link py-0" href="index.html"> <span>Compensation
+								<a class="nav-link py-0" href="compensationhistory"> <span>Compensation
 										History</span></a>
 							</div>
 						</div>
@@ -208,6 +210,7 @@
 												<th>status</th>
 											</tr>
 										</thead>
+										<%DateUtils d = new DateUtils();%>
 										<%
 										ArrayList<Accident> list = (ArrayList<Accident>) request.getAttribute("accidents");
 										%>
@@ -221,7 +224,7 @@
 													href="/contractuserpackage?id=<%=list.get(0).getContract().getId()%>">
 														<%=list.get(0).getContract().getId()%>
 												</a></td>
-												<td><%=list.get(0).getAccidentDate()%></td>
+												<td><%=d.showDate(new Timestamp(list.get(0).getAccidentDate().getTime()))%></td>
 												<td><%=list.get(0).getDamage()%></td>
 												<td><%=list.get(0).getIdaccidentfrompolice()%></td>
 												<td><%=list.get(0).getIddamagefromhospital()%></td>

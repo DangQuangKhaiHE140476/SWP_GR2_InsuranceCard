@@ -1,3 +1,5 @@
+<%@page import="com.example.demo.model.User"%>
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -46,7 +48,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>View profile</span>
                 </a></li>
@@ -60,7 +62,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="/showliability">
+            <li class="nav-item"><a class="nav-link" href="/historymenu">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>History</span>
                 </a></li>
@@ -68,7 +70,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Contract package list</span></a></li>
 
             <!-- Divider -->
@@ -76,7 +78,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
                 <span>Your contract list</span></a></li>
 
         </ul>
@@ -107,23 +109,27 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="#"
                                 id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">User</span> <img
-                                    class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                aria-expanded="false"> 
+                                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                  	<%
+										User user = (User) request.getAttribute("user");
+									%>
+									${user.getUsername()}
+                                   </span> 
+                                   <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a> <!-- Dropdown - User Information -->
                             <div class="
                     dropdown-menu dropdown-menu-right
                     shadow
                     animated--grow-in
                   " aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#"> <i
+                                <a class="dropdown-item" href="/viewprofile"> <i
                                         class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-                                </a> <a class="dropdown-item" href="#"> <i
-                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change
-                                    password
+                                </a> <a class="dropdown-item" href="/changepassword"> <i
+                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change password
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i
+                                <a class="dropdown-item" href="/logout""> <i
                                         class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -150,7 +156,6 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Creation Date</th>
-                                                <th>Expiration Date</th>
                                                 <th>Duration</th>
                                                 <th>Type of Vehicle</th>
                                                 <th>Status</th>
@@ -165,13 +170,8 @@
 											        <span><%=c.getId()%></span>
 											    </a>
 											</td>
-											<%
-									        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); %>
-											<td><%=formatter.format(c.getCreationdate())%></td>
-									
-											
-											<td></td>
-											
+											<%DateUtils d = new DateUtils();%>
+											<td><%=d.showDate(c.getCreationdate())%></td>																				
 											<td><%=c.getPackage_().getDuration()%></td>
 											<td><%=c.getVehicle().getVehicleType().getVehicletype()%></td>
 											<td><%=c.getContractStatus().getStatus()%></td>

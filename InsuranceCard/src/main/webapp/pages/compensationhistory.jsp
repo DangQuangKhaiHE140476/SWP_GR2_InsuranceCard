@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Compensation"%>
 <%@page import="com.example.demo.model.Accident"%>
 <%@page import="java.util.ArrayList"%>
@@ -44,7 +45,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>View profile</span>
                 </a></li>
@@ -58,7 +59,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="/showliability">
+            <li class="nav-item"><a class="nav-link" href="/historymenu">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>History</span>
                 </a></li>
@@ -66,7 +67,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Contract package list</span></a></li>
 
             <!-- Divider -->
@@ -74,7 +75,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
                 <span>Your contract list</span></a></li>
 
         </ul>
@@ -105,23 +106,27 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="#"
                                 id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">User</span> <img
-                                    class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                aria-expanded="false"> 
+                                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                  	<%
+										User user = (User) request.getAttribute("user");
+									%>
+									${user.getUsername()}
+                                   </span> 
+                                   <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a> <!-- Dropdown - User Information -->
                             <div class="
                     dropdown-menu dropdown-menu-right
                     shadow
                     animated--grow-in
                   " aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#"> <i
+                                <a class="dropdown-item" href="/viewprofile"> <i
                                         class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-                                </a> <a class="dropdown-item" href="#"> <i
-                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change
-                                    password
+                                </a> <a class="dropdown-item" href="/changepassword"> <i
+                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change password
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i
+                                <a class="dropdown-item" href="/logout""> <i
                                         class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -148,7 +153,7 @@
                           </div>
                           <div class="card-body">
                             <!-- Nav Item - Compensation -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="paymenthistory">
                               <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
                               <span>Payment History</span>
                             </a>
@@ -157,21 +162,21 @@
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Cancel -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="accidenthistory">
                               <span>Accident History</span></a>
             
                             <!-- Divider -->
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Renew -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="punishmenthistory">
                               <span>Punishment History</span></a>
             
                             <!-- Divider -->
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Request -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="compensationhistory">
                               <span>Compensation History</span></a>
                           </div>
                         </div>
@@ -203,7 +208,9 @@
                                         		<td><%=a.getId() %></td>
                                         		<td><%=c.getInsuranceLiabilities().get(0).getCompensationAmount()%></td>
                                         		<td><%=c.getCompensationStatus().getValue()%></td>
-                                        		<td><%=c.getCompensationStatus().getValue()%></td>
+                                        		<% if(c.getCompensationStatus().getValue().equalsIgnoreCase("unpaid")){ %>
+                                        		<td><a href="/requestcompensation?id=<%=a.getContract().getId()%>" onclick ="return confirm('Do you want to request compensation?')">Request</a></td>
+                                        		<%}%>
                                         	</tr>
                                         <%} %>
                                         </tbody>

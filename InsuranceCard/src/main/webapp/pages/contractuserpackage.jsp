@@ -1,3 +1,6 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="com.example.demo.common.DateUtils"%>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Vehicle"%>
 <%@page import="com.example.demo.model.InsuranceLiability"%>
 <%@page import="java.util.List"%>
@@ -47,7 +50,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0" />
 
-            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <i class="fas fa-file-contract fa-lg"></i>
                     <span>View profile</span>
                 </a>
@@ -57,7 +60,7 @@
             <hr class="sidebar-divider my-0" />
 
             <li class="nav-item">
-                <a class="nav-link" href="/showliability">
+                <a class="nav-link" href="/historymenu">
                     <i class="fas fa-file-contract fa-lg"></i>
                     <span>History</span>
                 </a>
@@ -66,7 +69,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0" />
 
-            <li class="nav-item"><a class="nav-link" href="/showstafflist">
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist">
                     <i class="fas fa-file-contract fa-lg"></i>
                     <span>View contract package</span>
                 </a>
@@ -103,27 +106,37 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                        <li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="#"
+                                id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> 
+                                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                  	<%
+										User user = (User) request.getAttribute("user");
+									%>
+									${user.getUsername()}
+                                   </span> 
+                                   <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            </a> <!-- Dropdown - User Information -->
+                            <div class="
+                    dropdown-menu dropdown-menu-right
+                    shadow
+                    animated--grow-in
+                  " aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/viewprofile"> <i
+                                        class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+                                </a> <a class="dropdown-item" href="/changepassword"> <i
+                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change password
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item" href="/logout""> <i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -137,6 +150,7 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Contract information</h6>
                             </div>
+                            <%DateUtils d = new DateUtils();%>
 							<%ArrayList<Contract> list = (ArrayList<Contract>) request.getAttribute("contract"); %>
 							<%Contract c = list.get(0); %>
                             <div class="card-body">
@@ -144,8 +158,8 @@
                                     <div class="col-lg-2">
                                         Created Date
                                     </div>
-                                    <div>
-										<%=c.getCreationdate()%>
+                                    <div>                                   
+										<%=d.showDate(c.getCreationdate())%>
                                     </div>
                                 </div>
                                 <!-- Divider -->
@@ -264,7 +278,7 @@
                                                 Registration date
                                             </div>
                                             <div>
-												<%=v.getRegistrationdate() %>
+												<%=d.showDate(new Timestamp(v.getRegistrationdate().getTime()))%>
                                             </div>
                                         </div>
                                         <!-- Divider -->
@@ -298,22 +312,22 @@
                     <div class="col-lg-4">
                         <div class="col-lg-offset-2 py-2">
                             <a href="requestcontract?status=cancel&&id=<%=c.getId()%>"><button type="button"
-                                    class="btn btn-primary btn-lg btn-block">Cancel Contract</button></a>
+                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to cancel this staff?')">Cancel Contract</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">
                             <a href="requestcontract?status=renew&&id=<%=c.getId()%>"><button type="button"
-                                    class="btn btn-primary btn-lg btn-block">Renew Contract</button></a>
+                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to renew this staff?')">Renew Contract</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">
                             <a href=""><button type="button"
-                                    class="btn btn-primary btn-lg btn-block">Report Accident</button></a>
+                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to delete this staff?')">Report Accident</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">
                             <a href="/showcontractlist"><button type="button"
-                                    class="btn btn-primary btn-lg btn-block">Back</button></a>
+                                    class="btn btn-primary btn-lg btn-block">Back to contract list</button></a>
                         </div>
                     </div>
                 </div>
@@ -341,27 +355,7 @@
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </a>  
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

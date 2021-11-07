@@ -44,7 +44,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="/showpackagelist">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>View profile</span>
                 </a></li>
@@ -58,7 +58,7 @@
             </div> -->
 
             <!-- Nav Item - Profile-->
-            <li class="nav-item"><a class="nav-link" href="/showliability">
+            <li class="nav-item"><a class="nav-link" href="/historymenu">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
                     <span>History</span>
                 </a></li>
@@ -66,7 +66,7 @@
             <!-- Divider -->
 
             <!-- Nav Item - History -->
-            <li class="nav-item"><a class="nav-link" href="/showstafflist"> <i class="fas fa-file-contract fa-lg"></i>
+            <li class="nav-item"><a class="nav-link" href="/contractpackagelist"> <i class="fas fa-file-contract fa-lg"></i>
                     <span>Contract package list</span></a></li>
 
             <!-- Divider -->
@@ -175,7 +175,7 @@
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Request -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="compensationhistory">
                               <span>Compensation History</span></a>
                           </div>
                         </div>

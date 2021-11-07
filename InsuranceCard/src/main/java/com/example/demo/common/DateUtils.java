@@ -1,6 +1,8 @@
 package com.example.demo.common;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class DateUtils {
 	public Date convertStringToSQLDate(String dateString) {
 		Date date=Date.valueOf(dateString);//converting string into sql date
 		return date;
+	}
+	
+	public String showDate(Timestamp date) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(date);	
 	}
 }
 

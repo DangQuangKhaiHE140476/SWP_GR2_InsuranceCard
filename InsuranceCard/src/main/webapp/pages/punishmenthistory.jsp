@@ -175,7 +175,7 @@
                             <hr class="sidebar-divider" />
             
                             <!-- Nav Item - Request -->
-                            <a class="nav-link py-0" href="index.html">
+                            <a class="nav-link py-0" href="compensationhistory">
                               <span>Compensation History</span></a>
                           </div>
                         </div>
