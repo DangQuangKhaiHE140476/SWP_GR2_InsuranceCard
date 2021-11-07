@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.VehicleType"%>
 <%@page import="com.example.demo.model.InsuranceLiability"%>
 <%@page import="java.util.List"%>
@@ -96,28 +97,37 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                        <li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="#"
+                                id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> 
+                                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                  	<%
+										User user = (User) request.getAttribute("user");
+									%>
+									${user.getUsername()}
+                                   </span> 
+                                   <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            </a> <!-- Dropdown - User Information -->
+                            <div class="
+                    dropdown-menu dropdown-menu-right
+                    shadow
+                    animated--grow-in
+                  " aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/viewprofile"> <i
+                                        class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+                                </a> <a class="dropdown-item" href="/changepassword"> <i
+                                        class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Change password
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item" href="/logout""> <i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -129,14 +139,14 @@
                     <div class="col-lg-8">
                         <div class="card shadow mb-4">
                             <div class="card-body">
-                                <form class="form-horizontal" role="form" action="request">
+                                <form class="form-horizontal" role="form" action="checkout">
                                     <div>
                                         <h5>User information</h5>
                                         <div class="row py-3">
                                             <div class="col-lg-2">User name</div>
                                             <div>
-                                                <%=request.getAttribute("username") %>
-                                                <input type="hidden" class="form-control" name="userid" value="1">
+                                                <%=user.getName()%>
+                                                <input type="hidden" class="form-control" name="userid" value="<%=user.getId()%>">
                                             </div>
                                         </div>
                                 
