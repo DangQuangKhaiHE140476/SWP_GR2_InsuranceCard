@@ -74,7 +74,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		"/viewprofile",
         		"/historymenu",
         		"/contractpackagelist",
-        		"/showcontractlist")
+        		"/showcontractlist",
+        		"/paymenthistory",
+        		"/accidenthistory",
+        		"/punishmenthistory",
+        		"/punishmentdetail",
+        		"/compensationhistory")
         	.hasAnyAuthority("CUSTOMER")
         .antMatchers("/staff/**")
         	.hasAnyAuthority("STAFF")

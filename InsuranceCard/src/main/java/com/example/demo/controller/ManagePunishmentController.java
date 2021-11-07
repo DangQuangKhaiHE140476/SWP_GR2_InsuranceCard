@@ -77,4 +77,6 @@ public class ManagePunishmentController {
 		
 		return new ModelAndView("redirect:/punishmenthistory");
 	}
+	
+	
 }

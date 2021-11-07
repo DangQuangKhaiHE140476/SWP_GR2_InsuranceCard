@@ -1,3 +1,6 @@
+<%@page import="com.example.demo.model.Compensation"%>
+<%@page import="com.example.demo.model.Accident"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -190,7 +193,19 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
+                                        <% ArrayList<Accident> list = (ArrayList<Accident>) request.getAttribute("accidents");%>
                                         <tbody>
+                                        <%for(Accident a:list){ 
+                                        	Compensation c = a.getCompensation();
+                                        %>
+                                        	<tr>
+                                        		<td><%=c.getId() %></td>
+                                        		<td><%=a.getId() %></td>
+                                        		<td><%=c.getInsuranceLiabilities().get(0).getCompensationAmount()%></td>
+                                        		<td><%=c.getCompensationStatus().getValue()%></td>
+                                        		<td><%=c.getCompensationStatus().getValue()%></td>
+                                        	</tr>
+                                        <%} %>
                                         </tbody>
                                     </table>
                                 </div>

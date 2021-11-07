@@ -2,11 +2,14 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ContractRepo;
 import com.example.demo.model.Contract;
+import com.example.demo.model.User;
 
 @Service
 public class ContractUserService {
@@ -16,10 +19,12 @@ public class ContractUserService {
 		super();
 		this.repo = repo;
 	}
+	@Autowired
+	private HttpSession session;
 	
 	public ArrayList<Contract> getContractByUserID(){
-		Long id = 2L;
-		return repo.getContractByUserID(id.toString());
+		User user = (User) session.getAttribute("user");
+		return repo.getContractByUserID(user.getId().toString());
 	}
 	
 	public ArrayList<Contract> getContractByID(String id){
