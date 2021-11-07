@@ -22,7 +22,7 @@ public class ContractUserService {
 	@Autowired
 	private HttpSession session;
 	
-	public ArrayList<Contract> getContractByUserID(){
+	public ArrayList<Contract> getContractByCurrentUserID(){
 		User user = (User) session.getAttribute("user");
 		return repo.getContractByUserID(user.getId().toString());
 	}

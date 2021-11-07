@@ -37,7 +37,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="/adminhome">
+				href="/customermenu">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-motorcycle fa-sm"></i>
 				</div>

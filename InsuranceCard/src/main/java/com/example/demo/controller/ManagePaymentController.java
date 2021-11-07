@@ -26,7 +26,7 @@ public class ManagePaymentController {
 	@RequestMapping("/paymenthistory")
 	public ModelAndView getPayMentHistory() {
 		ModelAndView mv = new ModelAndView();
-		ArrayList<Contract> contract = contractService.getContractByUserID();
+		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
 		ArrayList<Payment> payment = new ArrayList<Payment>();
 		for (Contract contract2 : contract) {
 			payment.addAll(paymentService.getPaymentByContractID(contract2.getId().toString()));

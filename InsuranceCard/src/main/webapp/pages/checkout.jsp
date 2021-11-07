@@ -42,7 +42,7 @@
             <hr class="sidebar-divider my-0" />
 
             <!-- Nav Item - Profile -->
-            <li class="nav-item"><a class="nav-link" href="/customerviewprofile">
+            <li class="nav-item"><a class="nav-link" href="/viewprofile">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
                     <span>View Profile</span>
                 </a></li>

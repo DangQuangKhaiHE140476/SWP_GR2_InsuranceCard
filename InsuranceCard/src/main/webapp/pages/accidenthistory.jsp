@@ -41,7 +41,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="/adminhome">
+				href="/customermenu">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-motorcycle fa-sm"></i>
 				</div>
@@ -219,16 +219,16 @@
 											for (Accident a : list) {
 											%>
 											<tr>
-												<td><%=list.get(0).getId()%></td>
+												<td><%=a.getId()%></td>
 												<td><a
-													href="/contractuserpackage?id=<%=list.get(0).getContract().getId()%>">
-														<%=list.get(0).getContract().getId()%>
+													href="/contractuserpackage?id=<%=a.getContract().getId()%>">
+														<%=a.getContract().getId()%>
 												</a></td>
-												<td><%=d.showDate(new Timestamp(list.get(0).getAccidentDate().getTime()))%></td>
-												<td><%=list.get(0).getDamage()%></td>
-												<td><%=list.get(0).getIdaccidentfrompolice()%></td>
-												<td><%=list.get(0).getIddamagefromhospital()%></td>
-												<td><%=list.get(0).getAccidentStatus().getStatus()%></td>
+												<td><%=d.showDate(new Timestamp(a.getAccidentDate().getTime()))%></td>
+												<td><%=a.getDamage()%></td>
+												<td><%=a.getIdaccidentfrompolice()%></td>
+												<td><%=a.getIddamagefromhospital()%></td>
+												<td><%=a.getAccidentStatus().getStatus()%></td>
 											</tr>
 											<%
 											}

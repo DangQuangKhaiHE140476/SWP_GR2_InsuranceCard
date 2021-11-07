@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Accident;
 import com.example.demo.model.Contract;
-import com.example.demo.model.Payment;
 import com.example.demo.model.Request;
 import com.example.demo.model.RequestStatus;
 import com.example.demo.model.RequestType;
@@ -26,14 +25,14 @@ import com.example.demo.service.RequestStatusService;
 import com.example.demo.service.RequestTypeService;
 
 @Controller
-public class ManageAccidentController {
+public class ManageHistoryController {
 	private final AccidentService accidentService;
 	private final ContractUserService contractService;
 	private final RequestTypeService requestTypeService;
 	private final RequestStatusService requestStatusService;
 	private final RequestService requestService;
 	@Autowired
-	public ManageAccidentController(AccidentService accidentService, ContractUserService contractService, RequestTypeService requestTypeService, RequestStatusService requestStatusService, RequestService requestService) {
+	public ManageHistoryController(AccidentService accidentService, ContractUserService contractService, RequestTypeService requestTypeService, RequestStatusService requestStatusService, RequestService requestService) {
 		super();
 		this.accidentService = accidentService;
 		this.contractService = contractService;
@@ -49,7 +48,7 @@ public class ManageAccidentController {
 	public ModelAndView getAccidentByUsere() {
 		ModelAndView mv = new ModelAndView();
 		
-		ArrayList<Contract> contract = contractService.getContractByUserID();
+		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
 		ArrayList<Accident> accident = new ArrayList<Accident>();
 		
 		for (Contract contract2 : contract) {
@@ -65,7 +64,7 @@ public class ManageAccidentController {
 	public ModelAndView getCompensationByAccident() {
 		ModelAndView mv = new ModelAndView();
 		
-		ArrayList<Contract> contract = contractService.getContractByUserID();
+		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
 		ArrayList<Accident> accident = new ArrayList<Accident>();
 		
 		for (Contract contract2 : contract) {
@@ -80,7 +79,6 @@ public class ManageAccidentController {
 	
 	@RequestMapping("/requestcompensation")
 	public ModelAndView requestCompensation(@RequestParam("id")String id) {
-		ModelAndView mv = new ModelAndView();
 		RequestStatus Status = requestStatusService.getRequestStatusByStatus("PROCESSING").get(0);
 		RequestType type;
 		

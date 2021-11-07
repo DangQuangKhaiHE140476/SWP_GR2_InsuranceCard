@@ -312,17 +312,17 @@
                     <div class="col-lg-4">
                         <div class="col-lg-offset-2 py-2">
                             <a href="requestcontract?status=cancel&&id=<%=c.getId()%>"><button type="button"
-                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to cancel this staff?')">Cancel Contract</button></a>
+                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to cancel this contract?')">Cancel Contract</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">
                             <a href="requestcontract?status=renew&&id=<%=c.getId()%>"><button type="button"
-                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to renew this staff?')">Renew Contract</button></a>
+                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to renew this contract?')">Renew Contract</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">
-                            <a href=""><button type="button"
-                                    class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to delete this staff?')">Report Accident</button></a>
+                            <a href="/reportaccident"><button type="button"
+                                    class="btn btn-primary btn-lg btn-block">Report Accident</button></a>
                         </div>
 
                         <div class="col-lg-offset-2 py-2">

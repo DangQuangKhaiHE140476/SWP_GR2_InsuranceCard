@@ -38,7 +38,7 @@ public class ManagePunishmentController {
 	@RequestMapping("/punishmenthistory")
 	public ModelAndView getPunishmentByUser() {
 		ModelAndView mv = new ModelAndView();
-		ArrayList<Contract> contract = contractService.getContractByUserID();
+		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
 		ArrayList<Punishment> p = new ArrayList<Punishment>();
 		for (Contract contract2 : contract) {
 			p.addAll(punishmentService.getPunishmentByContractID(contract2.getId().toString()));
@@ -59,7 +59,6 @@ public class ManagePunishmentController {
 	
 	@RequestMapping("/payfine")
 	public ModelAndView processPayFine(@RequestParam("punishid")String punishid, @RequestParam("id")String id) {
-		ModelAndView mv = new ModelAndView();
 		Payment p = new Payment();
 		p.setContract(contractService.getContractByID(id).get(0));
 		p.setPunishment(punishmentService.getPunishmentByID(punishid).get(0));

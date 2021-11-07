@@ -166,7 +166,7 @@
                                         <%for(Contract c:contractList){ %>
 										<tr>
 											<td>
-											    <a class="nav-link" href="/contractuserpackage?id=<%=c.getId()%>"> 
+											    <a class="nav-link" href="/contractdetail?id=<%=c.getId()%>"> 
 											        <span><%=c.getId()%></span>
 											    </a>
 											</td>

@@ -4,6 +4,8 @@ package com.example.demo.controller;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,19 +40,23 @@ public class ManageContractController {
 		this.requestService = requestService;
 	}
 	
+	@Autowired
+	private HttpSession session;
+	
 	// Tuan Anh start
 	@RequestMapping("/showcontractlist")
 	public ModelAndView getContractByUser() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("contractList",service.getContractByUserID());
+		mv.addObject("contractList",service.getContractByCurrentUserID());
 		mv.setViewName("showcontractlist");
 		return mv;
 	}
 	
-	@RequestMapping("/contractuserpackage")
+	@RequestMapping("/contractdetail")
 	public ModelAndView getContractByID(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("contract", service.getContractByID(id));
+		session.setAttribute("contract", service.getContractByID(id).get(0));
 		mv.setViewName("contractdetail");
 		return mv;
 	}
