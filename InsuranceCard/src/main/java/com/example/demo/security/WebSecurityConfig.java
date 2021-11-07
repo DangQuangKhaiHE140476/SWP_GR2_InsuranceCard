@@ -81,7 +81,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		"/punishmentdetail",
         		"/compensationhistory")
         	.hasAnyAuthority("CUSTOMER")
-        .antMatchers("/staff/**")
+        .antMatchers("/staffmenu",
+        		"/showrequestlist",
+        		"/requestcancel",
+        		"/requestrenew",
+        		"/requestnew")
         	.hasAnyAuthority("STAFF")
         .anyRequest().authenticated()
         .and()

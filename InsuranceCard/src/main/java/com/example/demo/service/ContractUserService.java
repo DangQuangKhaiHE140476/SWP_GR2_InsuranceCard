@@ -30,4 +30,8 @@ public class ContractUserService {
 	public ArrayList<Contract> getContractByID(String id){
 		return (ArrayList<Contract>) repo.getContractByID(id);
 	}
+	
+	public void saveContract(Contract c) {
+		repo.save(c);
+	}
 }

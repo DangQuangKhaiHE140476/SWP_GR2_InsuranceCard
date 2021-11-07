@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Punishment"%>
 <%@page import="java.util.ArrayList"%>
@@ -196,6 +197,7 @@
                                                 <th>deadline</th>
                                             </tr>
                                         </thead>
+                                        <%DateUtils d = new DateUtils();%>
                                         <%ArrayList<Punishment> list = (ArrayList<Punishment>)request.getAttribute("punishments"); %>
                                         <tbody>
                                         <%for(Punishment p:list) {%>
@@ -203,7 +205,7 @@
                                         		<td><a href="/punishmentdetail?id=<%=p.getId()%>"><%=p.getId()%></a></td>
                                         		<td><%=p.getAmount()%></td>
                                         		<td><%=p.getPunishmentStatus().getStatus()%></td>
-                                        		<td><%=p.getDeadline()%></td>
+                                        		<td><%=d.showDate(p.getDeadline())%></td>
                                         		</tr>
                                         <%} %>
                                         </tbody>

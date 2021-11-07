@@ -1,6 +1,9 @@
-<%@page import="com.example.demo.model.User"%>
+<%@page import="com.example.demo.model.Request"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.example.demo.model.User"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +65,7 @@
             </div> -->
 
 			<!-- Nav Item - Profile-->
-			<li class="nav-item"><a class="nav-link" href="/requestmenu">
+			<li class="nav-item"><a class="nav-link" href="/historymenu">
 					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
 					class="far fa-user-circle fa-lg"></i> <span>View request list</span>
 			</a></li>
@@ -158,7 +161,7 @@
 							</div>
 							<div class="card-body">
 								<!-- Nav Item - Compensation -->
-								<a class="nav-link py-0" href="/requestcancel"> <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+								<a class="nav-link py-0" href="paymenthistory"> <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
 									<span>Resolve request cancel</span>
 								</a>
 
@@ -180,6 +183,58 @@
 								<!-- Nav Item - Request -->
 								<a class="nav-link py-0" href="compensationhistory"> <span>Compensation
 										History</span></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">History table</h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable" width="100%"
+										cellspacing="0">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>UserID</th>
+												<th>ContractID</th>
+												<th>Type</th>
+												<th>Status</th>
+												<th>Date</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<%DateUtils d = new DateUtils();%>
+										<%
+										ArrayList<Request> list = (ArrayList<Request>) request.getAttribute("cancels");
+										%>
+										<tbody>
+											<%
+											for (Request r : list) {
+											%>
+											<tr>
+												<td><%=r.getId()%></td>
+												<td><a
+													href="">
+														<%=r.getUser().getId()%>
+												</a></td>
+												<td><a
+													href="">
+														<%=r.getContract().getId()%>
+												</a></td>
+												<td><%=r.getRequestType().getType()%></td>
+												<td><%=r.getRequestStatus().getStatus()%></td>
+												<td><%=d.showDate(r.getRequestdate())%></td>												
+												<td><a href="/resolveRequest?status=cancel&&id=<%=r.getContract().getId()%>&&requestid=<%=r.getId()%>">Resolve</a></td>
+											</tr>
+											<%
+											}
+											%>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>

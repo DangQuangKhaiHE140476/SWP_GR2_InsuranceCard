@@ -94,5 +94,7 @@ public class ContractService {
 		pm.setPaymentType(pt);
 		pm.setPaymentdate(getCurrentDate());
 		paymentRepo.save(pm);
+		
+		
 	}
 }

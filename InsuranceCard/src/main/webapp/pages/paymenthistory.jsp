@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Payment"%>
 <%@page import="java.util.ArrayList"%>
@@ -136,7 +137,6 @@
                 <!-- End of Topbar -->
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <!--Contract-->
                 <div class="row justify-content-center">
@@ -198,6 +198,7 @@
                                                 <th>Amount</th>
                                             </tr>
                                         </thead>
+                                        <%DateUtils d = new DateUtils();%>
                                         <%ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("payments");%>
                                         <tbody>
                                         	<%for(Payment p:list){ %>
@@ -214,7 +215,7 @@
 											    <td></td>
 											    <%} %>
 											    <td><%=p.getPaymentType().getType()%></td>
-											    <td><%=p.getPaymentdate()%></td>
+											    <td><%=d.showDate(p.getPaymentdate())%></td>
 											    <%if(p.getPunishment() != null){ %>
 											    <td><%=p.getPunishment().getAmount()%></td>
 											    <%}else{ %>

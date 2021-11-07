@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="com.example.demo.model.User"%>
 <%@page import="com.example.demo.model.Punishment"%>
 <%@page import="java.util.ArrayList"%>
@@ -157,6 +158,7 @@
 								<h5 class="m-0 font-weight-bold text-primary">Punishment
 									details</h5>
 							</div>
+							<%DateUtils d = new DateUtils(); %>
 							<%ArrayList<Punishment> list = (ArrayList<Punishment>)request.getAttribute("punishment"); %>
 							<div class="card-body">
 								<div class="row py-3">
@@ -214,7 +216,7 @@
 										<h5 class="h5 mb-1 text-gray-1000">Deadline</h5>
 									</div>
 									<div>
-										<h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getDeadline()%></h5>
+										<h5 class="h5 mb-1 text-gray-1000"><%=d.showDate(list.get(0).getDeadline())%></h5>
 									</div>
 								</div>
 
