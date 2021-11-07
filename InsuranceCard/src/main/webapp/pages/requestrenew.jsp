@@ -65,7 +65,7 @@
             </div> -->
 
 			<!-- Nav Item - Profile-->
-			<li class="nav-item"><a class="nav-link" href="/historymenu">
+			<li class="nav-item"><a class="nav-link" href="/requestmenu">
 					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
 					class="far fa-user-circle fa-lg"></i> <span>View request list</span>
 			</a></li>
@@ -107,7 +107,7 @@
 					<div class="container">
 						<!-- Page Heading -->
 						<h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-							Resolve request</h1>
+							Resolve request renew</h1>
 					</div>
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -189,7 +189,7 @@
 					<div class="col-lg-8">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">History table</h6>
+								<h6 class="m-0 font-weight-bold text-primary">Request table</h6>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
