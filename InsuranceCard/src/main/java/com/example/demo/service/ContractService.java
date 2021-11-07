@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.ContractRepo;
 import com.example.demo.dao.ContractStatusRepo;
 import com.example.demo.dao.PackageRepo;
+import com.example.demo.dao.PaymentRepo;
+import com.example.demo.dao.PaymentTypeRepo;
 import com.example.demo.dao.UserRepo;
 import com.example.demo.dao.VehicleRepo;
 import com.example.demo.dao.VehicleTypeRepo;
@@ -16,6 +18,8 @@ import com.example.demo.model.Contract;
 import com.example.demo.model.ContractStatus;
 import com.example.demo.model.Vehicle;
 import com.example.demo.model.Package;
+import com.example.demo.model.Payment;
+import com.example.demo.model.PaymentType;
 import com.example.demo.model.User;
 
 @Service
@@ -27,10 +31,13 @@ public class ContractService {
 	private final ContractStatusRepo contractStatusRepo;
 	private final UserRepo userRepo;
 	private final VehicleRepo vehicleRepo;
+	private final PaymentTypeRepo paymentTypeRepo;
+	private final PaymentRepo paymentRepo;
 
 	@Autowired
     public ContractService(ContractRepo contractRepo, VehicleTypeRepo vehicleTypeRepo, PackageRepo packageRepo,
-			ContractStatusRepo contractStatusRepo, UserRepo userRepo, VehicleRepo vehicleRepo) {
+			ContractStatusRepo contractStatusRepo, UserRepo userRepo, VehicleRepo vehicleRepo,
+			PaymentTypeRepo paymentTypeRepo, PaymentRepo paymentRepo) {
 		super();
 		this.contractRepo = contractRepo;
 		this.vehicleTypeRepo = vehicleTypeRepo;
@@ -38,17 +45,13 @@ public class ContractService {
 		this.contractStatusRepo = contractStatusRepo;
 		this.userRepo = userRepo;
 		this.vehicleRepo = vehicleRepo;
+		this.paymentTypeRepo = paymentTypeRepo;
+		this.paymentRepo = paymentRepo;
 	}
 
 	public Timestamp getCurrentDate() {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		return ts;
-	}
-	
-	public String getUserName(String id) {
-		User u = userRepo.getCustomer(id).get(0);
-		String name = u.getName();
-		return name;
 	}
 
 	public void RequestNewContract(String userid,
@@ -84,5 +87,12 @@ public class ContractService {
 		c.setCreationdate(getCurrentDate());
 		c.setContractStatus(cs);
 		contractRepo.save(c);
+		
+		PaymentType pt = paymentTypeRepo.getPaymentType("NEW_CONTRACT").get(0);
+		Payment pm = new Payment();
+		pm.setContract(c);
+		pm.setPaymentType(pt);
+		pm.setPaymentdate(getCurrentDate());
+		paymentRepo.save(pm);
 	}
 }

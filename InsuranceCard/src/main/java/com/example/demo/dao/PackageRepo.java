@@ -39,4 +39,11 @@ public interface PackageRepo extends JpaRepository<Package, Long>{
 	@Transactional
 	@Query(value = "INSERT INTO package_insurance_liability VALUES (?1,?2)", nativeQuery = true)
 	public void insertPackageInsuranceLiability(String packageid, String liabilityid);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "select sum(compensationamount) from insurance_liability where id in(\r\n"
+			+ "   select insuranceliabilityid from package_insurance_liability where packageid=1\r\n"
+			+ ")", nativeQuery = true)
+	public int getTotalAmount(String packageid);
 }
