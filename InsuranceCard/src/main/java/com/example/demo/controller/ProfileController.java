@@ -28,8 +28,8 @@ public class ProfileController {
 	public ModelAndView viewProfile() {
 		User user = (User) session.getAttribute("user");
 		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("user",user);
+		User updatedUser = userService.getUserByUsername(user.getUsername());
+		mv.addObject("user",updatedUser);
 		mv.setViewName("viewprofile");
 		return mv;
 	}

@@ -206,12 +206,20 @@
                                         		<td><a href="/contractuserpackage?id=<%=p.getContract().getId()%>"> 
 											        <%=p.getContract().getId()%>
 											    </a></td>
+											    <%if(p.getPunishment() != null){ %>
 											    <td><a href="/punishmentdetail?id=<%=p.getPunishment().getId()%>"> 
 											        <%=p.getPunishment().getId()%>
 											    </a></td>
+											    <%}else{ %>
+											    <td></td>
+											    <%} %>
 											    <td><%=p.getPaymentType().getType()%></td>
 											    <td><%=p.getPaymentdate()%></td>
+											    <%if(p.getPunishment() != null){ %>
 											    <td><%=p.getPunishment().getAmount()%></td>
+											    <%}else{ %>
+											    <td><%=p.getContract().getPackage_().getPrice() %></td>
+											    <%} %>
                                         	</tr>
                                         	<%}%>
                                         </tbody>

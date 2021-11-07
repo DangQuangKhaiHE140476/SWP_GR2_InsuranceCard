@@ -101,7 +101,7 @@
                     <div class="container">
                         <!-- Page Heading -->
                         <h1 class="py-4 text-center font-weight-bold text-primary">
-                            Show package</h1>
+                            Contract Detail</h1>
                     </div>
 
                     <!-- Topbar Navbar -->

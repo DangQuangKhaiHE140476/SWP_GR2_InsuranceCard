@@ -51,7 +51,7 @@ public class ManageContractController {
 	public ModelAndView getContractByID(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("contract", service.getContractByID(id));
-		mv.setViewName("contractuserpackage");
+		mv.setViewName("contractdetail");
 		return mv;
 	}
 	

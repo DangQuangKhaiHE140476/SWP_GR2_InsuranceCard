@@ -60,6 +60,10 @@ public class UserService {
 	public ArrayList<User> getUser(String id){
 		return repo.getUser(id);
 	}
+	
+	public User getUserByUsername(String username){
+		return repo.findByUsername(username);
+	}
 
 	public void updateUserProfile(
 			String id, 
