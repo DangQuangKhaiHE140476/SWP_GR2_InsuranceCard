@@ -39,6 +39,10 @@ public class PackageService {
 		return packageRepo.getPackageById(id).get(0);
 	}
 	
+	public int getTotalAmount(String packageid) {
+		return packageRepo.getTotalAmount(packageid);
+	}
+	
 	public void addPackage(String VehicleType,
 			String Price,
 			String Duration,
