@@ -21,6 +21,6 @@ public interface RequestRepo extends CrudRepository<Request, Long> {
 			+ "    `request`.`typeid`,\r\n"
 			+ "    `request`.`userid`\r\n"
 			+ "FROM `insurancecardsystem1`.`request`\r\n"
-			+ "Where typeid=?1 AND statusid = 1", nativeQuery = true)
+			+ "Where typeid=?1", nativeQuery = true)
 	public ArrayList<Request> getRequestByTypeID(String id);
 }

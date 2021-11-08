@@ -223,8 +223,12 @@
 												</a></td>
 												<td><%=r.getRequestType().getType()%></td>
 												<td><%=r.getRequestStatus().getStatus()%></td>
-												<td><%=d.showDate(r.getRequestdate())%></td>												
+												<td><%=d.showDate(r.getRequestdate())%></td>
+												<%if(r.getRequestStatus().getStatus().equals("PROCESSING")){ %>												
 												<td><a href="/resolveRequest?status=cancel&&id=<%=r.getContract().getId()%>&&requestid=<%=r.getId()%>">Resolve</a></td>
+												<%}else{%>
+												<td></td>
+												<%} %>
 											</tr>
 											<%
 											}

@@ -217,9 +217,9 @@
 											    <td><%=p.getPaymentType().getType()%></td>
 											    <td><%=d.showDate(p.getPaymentdate())%></td>
 											    <%if(p.getPunishment() != null){ %>
-											    <td><%=p.getPunishment().getAmount()%></td>
+											    <td><%=p.getPunishment().getAmount()%> VND</td>
 											    <%}else{ %>
-											    <td><%=p.getContract().getPackage_().getPrice() %></td>
+											    <td><%=p.getContract().getPackage_().getPrice()%> VND</td>
 											    <%} %>
                                         	</tr>
                                         	<%}%>
