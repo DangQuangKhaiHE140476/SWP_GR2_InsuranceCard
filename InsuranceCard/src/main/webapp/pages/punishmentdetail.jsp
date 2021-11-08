@@ -189,7 +189,7 @@
 										<h5 class="h5 mb-1 text-gray-1000">Amount</h5>
 									</div>
 									<div>
-										<h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getAmount()%></h5>
+										<h5 class="h5 mb-1 text-gray-1000"><%=list.get(0).getAmount()%> VND</h5>
 									</div>
 								</div>
 								<hr class="sidebar-divider" />
@@ -224,9 +224,12 @@
 						</div>
 					</div>
 					<div class="container text-center">
-						<a class="btn btn-primary"
+						<%if(list.get(0).getPunishmentStatus().getStatus().equals("UNPAID"){%>
+							<a class="btn btn-primary"
 							href="payfine?punishid=<%=list.get(0).getId()%>&&id=<%=list.get(0).getContract().getId()%>"
-							role="button">Pay your fine</a> <a class="btn btn-primary"
+							role="button">Pay your fine</a>
+							<%}%>						
+							 <a class="btn btn-primary"
 							href="/punishmenthistory" role="button">Back to punishment
 							list</a>
 					</div>

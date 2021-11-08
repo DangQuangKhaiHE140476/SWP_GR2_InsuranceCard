@@ -208,7 +208,7 @@
                                         <tr>
                                             <td><%=il.getId() %></td>
                                             <td><%=il.getLevelDamage()%></td>
-                                            <td><%=il.getCompensationAmount()%></td>
+                                            <td><%=il.getCompensationAmount()%> VND</td>
                                         </tr>
                                         <%} %>
                                     </tbody>

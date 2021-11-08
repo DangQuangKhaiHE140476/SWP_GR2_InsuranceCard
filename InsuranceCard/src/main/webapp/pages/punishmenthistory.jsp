@@ -203,7 +203,7 @@
                                         <%for(Punishment p:list) {%>
                                         		<tr>                                       		
                                         		<td><a href="/punishmentdetail?id=<%=p.getId()%>"><%=p.getId()%></a></td>
-                                        		<td><%=p.getAmount()%></td>
+                                        		<td><%=p.getAmount()%> VND</td>
                                         		<td><%=p.getPunishmentStatus().getStatus()%></td>
                                         		<td><%=d.showDate(p.getDeadline())%></td>
                                         		</tr>
