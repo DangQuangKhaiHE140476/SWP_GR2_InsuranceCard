@@ -166,20 +166,14 @@
 								<hr class="sidebar-divider" />
 
 								<!-- Nav Item - Cancel -->
-								<a class="nav-link py-0" href="accidenthistory"> <span>Resolve request renew</span></a>
+								<a class="nav-link py-0" href="requestrenew"> <span>Resolve request renew</span></a>
 
 								<!-- Divider -->
 								<hr class="sidebar-divider" />
 
 								<!-- Nav Item - Renew -->
-								<a class="nav-link py-0" href="punishmenthistory"> <span>Resolve request new</span></a>
+								<a class="nav-link py-0" href="requestnew"> <span>Resolve request new</span></a>
 
-								<!-- Divider -->
-								<hr class="sidebar-divider" />
-
-								<!-- Nav Item - Request -->
-								<a class="nav-link py-0" href="compensationhistory"> <span>Compensation
-										History</span></a>
 							</div>
 						</div>
 					</div>

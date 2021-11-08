@@ -23,7 +23,7 @@ public interface ContractRepo extends CrudRepository<Contract, Long> {
 			+ "    `contract`.`userid`,\r\n"
 			+ "    `contract`.`vehicleid`\r\n"
 			+ "FROM `insurancecardsystem1`.`contract`\r\n"
-			+ "where userid = ?1", nativeQuery = true)
+			+ "where userid = ?1 and statusid != 1", nativeQuery = true)
 	public ArrayList<Contract> getContractByUserID(String id);
 	
 	@Modifying
@@ -37,4 +37,16 @@ public interface ContractRepo extends CrudRepository<Contract, Long> {
 			+ "FROM `insurancecardsystem1`.`contract`\r\n"
 			+ "where id = ?1", nativeQuery = true)
 	public ArrayList<Contract> getContractByID(String id);
+	
+	@Modifying
+	@Transactional
+	@Query( value = "SELECT `contract`.`id`,\r\n"
+			+ "    `contract`.`creationdate`,\r\n"
+			+ "    `contract`.`statusid`,\r\n"
+			+ "    `contract`.`packageid`,\r\n"
+			+ "    `contract`.`userid`,\r\n"
+			+ "    `contract`.`vehicleid`\r\n"
+			+ "FROM `insurancecardsystem1`.`contract`\r\n"
+			+ "Where statusid=1", nativeQuery = true)
+	public ArrayList<Contract> getContractProcessing();
 }

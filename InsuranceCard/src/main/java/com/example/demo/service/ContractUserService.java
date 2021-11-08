@@ -34,4 +34,8 @@ public class ContractUserService {
 	public void saveContract(Contract c) {
 		repo.save(c);
 	}
+	
+	public ArrayList<Contract> getContractProcess(){
+		return repo.getContractProcessing();
+	}
 }

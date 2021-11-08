@@ -70,7 +70,7 @@ public class ManageContractController {
 		}else {
 			type = requestTypeService.getRequestTypeByType("RENEW_CONTRACT").get(0);
 		}
-		User user = userService.getUser("2").get(0);
+		User user = (User) session.getAttribute("user");
 		Contract contract = service.getContractByID(id).get(0);
 		Date date = new Date();
 		Timestamp timestamp = new Timestamp(date.getTime());
@@ -82,6 +82,7 @@ public class ManageContractController {
 		request.setRequestdate(timestamp);
 		request.setUser(user);
 		requestService.addRequest(request);
+		
 		
 		return new ModelAndView("redirect:/showcontractlist");
 	}

@@ -161,7 +161,7 @@
 							</div>
 							<div class="card-body">
 								<!-- Nav Item - Compensation -->
-								<a class="nav-link py-0" href="paymenthistory"> <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+								<a class="nav-link py-0" href="requestcancel"> <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
 									<span>Resolve request cancel</span>
 								</a>
 
@@ -169,20 +169,14 @@
 								<hr class="sidebar-divider" />
 
 								<!-- Nav Item - Cancel -->
-								<a class="nav-link py-0" href="accidenthistory"> <span>Resolve request renew</span></a>
+								<a class="nav-link py-0" href="requestrenew"> <span>Resolve request renew</span></a>
 
 								<!-- Divider -->
 								<hr class="sidebar-divider" />
 
 								<!-- Nav Item - Renew -->
-								<a class="nav-link py-0" href="punishmenthistory"> <span>Resolve request new</span></a>
+								<a class="nav-link py-0" href="requestnew"> <span>Resolve request new</span></a>
 
-								<!-- Divider -->
-								<hr class="sidebar-divider" />
-
-								<!-- Nav Item - Request -->
-								<a class="nav-link py-0" href="compensationhistory"> <span>Compensation
-										History</span></a>
 							</div>
 						</div>
 					</div>
@@ -208,7 +202,7 @@
 										</thead>
 										<%DateUtils d = new DateUtils();%>
 										<%
-										ArrayList<Request> list = (ArrayList<Request>) request.getAttribute("cancels");
+										ArrayList<Request> list = (ArrayList<Request>) request.getAttribute("news");
 										%>
 										<tbody>
 											<%
@@ -227,7 +221,7 @@
 												<td><%=r.getRequestType().getType()%></td>
 												<td><%=r.getRequestStatus().getStatus()%></td>
 												<td><%=d.showDate(r.getRequestdate())%></td>												
-												<td><a href="/resolveRequest?status=cancel&&id=<%=r.getContract().getId()%>&&requestid=<%=r.getId()%>">Resolve</a></td>
+												<td><a href="/resolveRequest?status=new&&id=<%=r.getContract().getId()%>&&requestid=<%=r.getId()%>">Resolve</a></td>
 											</tr>
 											<%
 											}
