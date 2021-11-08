@@ -224,7 +224,7 @@
 						</div>
 					</div>
 					<div class="container text-center">
-						<%if(list.get(0).getPunishmentStatus().getStatus().equals("UNPAID"){%>
+						<%if(list.get(0).getPunishmentStatus().getStatus().equals("UNPAID")){%>
 							<a class="btn btn-primary"
 							href="payfine?punishid=<%=list.get(0).getId()%>&&id=<%=list.get(0).getContract().getId()%>"
 							role="button">Pay your fine</a>

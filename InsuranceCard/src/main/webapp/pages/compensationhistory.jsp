@@ -206,7 +206,7 @@
                                         	<tr>
                                         		<td><%=c.getId() %></td>
                                         		<td><%=a.getId() %></td>
-                                        		<td><%=c.getInsuranceLiabilities().get(0).getCompensationAmount()%></td>
+                                        		<td><%=c.getInsuranceLiabilities().get(0).getCompensationAmount()%> VND</td>
                                         		<td><%=c.getCompensationStatus().getValue()%></td>
                                         		<% if(c.getCompensationStatus().getValue().equalsIgnoreCase("unpaid")){ %>
                                         		<td><a href="/requestcompensation?id=<%=a.getContract().getId()%>" onclick ="return confirm('Do you want to request compensation?')">Request</a></td>

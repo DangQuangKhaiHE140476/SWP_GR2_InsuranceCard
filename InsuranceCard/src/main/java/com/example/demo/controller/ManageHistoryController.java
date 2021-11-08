@@ -45,7 +45,7 @@ public class ManageHistoryController {
 	private HttpSession session;
 	
 	@RequestMapping("/accidenthistory")
-	public ModelAndView getAccidentByUsere() {
+	public ModelAndView getAccidentByUser() {
 		ModelAndView mv = new ModelAndView();
 		
 		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
