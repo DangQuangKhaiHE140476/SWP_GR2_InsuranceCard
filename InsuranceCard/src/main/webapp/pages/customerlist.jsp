@@ -30,56 +30,56 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/staffmenu">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-motorcycle fa-sm"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Insurance Card</div>
-            </a>
+        <ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			id="accordionSidebar">
+			<!-- Sidebar - Brand -->
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="/adminhome">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-motorcycle fa-sm"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">Insurance Card</div>
+			</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0" />
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0" />
 
-            <!-- Nav Item - Profile -->
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="fas fa-tachometer-alt"></i>
-                    <span>Manage customer</span>
-                </a></li>
+			<!-- Nav Item - Show customer list -->
+			<li class="nav-item"><a class="nav-link" href="/customerlist">
+					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
+					class="fas fa-tachometer-alt"></i> <span>Show customer list</span>
+			</a></li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0" />
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0" />
 
-            <!-- Nav Item - History-->
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i class="far fa-user-circle fa-lg"></i>
-                    <span>Manage contract</span>
-                </a></li>
+			<!-- Nav Item - View request list-->
+			<li class="nav-item"><a class="nav-link" href="/requestmenu">
+					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
+					class="far fa-user-circle fa-lg"></i> <span>View request list</span>
+			</a></li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0" />
 
-            <!-- Nav Item - Contract Package List -->
-            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-file-contract fa-lg"></i>
-                    <span>View request list</span></a></li>
+			<!-- Nav Item - Reported Accident list -->
+			<li class="nav-item"><a class="nav-link"
+				href="/reportedaccidentlist"> <i
+					class="fas fa-file-contract fa-lg"></i> <span>Reported Accident list</span>
+			</a></li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
-            
-            <!-- Nav Item - Contract List -->
-            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-file-contract fa-lg"></i>
-                    <span>Accident report</span></a></li>
+			<!-- Divider -->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
+			<hr class="sidebar-divider" />
 
-            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-file-contract fa-lg"></i>
-                <span>Compensation list</span></a></li>
+			<!-- Nav Item - Compensation list -->
+			<li class="nav-item"><a class="nav-link"
+				href="/compensationlist"> <i class="fas fa-file-contract fa-lg"></i>
+					<span>Compensation list</span></a></li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
-        </ul>
+		</ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -165,7 +165,7 @@
                                             <td><%=u.getName() %></td>
                                             <td><%=u.getEmail() %></td>
                                             <td>
-                                                <a href="/customerinfo?id=<%=u.getId()%>">Detail</a>
+                                                <a href="/customerinfo?userid=<%=u.getId()%>">Detail</a>
                                             </td>
                                         </tr>
                                         <%} %>

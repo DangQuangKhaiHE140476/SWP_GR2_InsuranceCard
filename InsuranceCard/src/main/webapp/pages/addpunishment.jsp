@@ -145,6 +145,7 @@
                             </div>
                             <div class="card-body">
                                 <form class="form-horizontal" role="form" action="add_punishment_function">
+                                    <input type="hidden" class="form-control" name="userid" value="<%=(String)request.getAttribute("customerid")%>">
                                     <input type="hidden" class="form-control" name="contractid" value="<%=(String)request.getAttribute("contractid")%>">
                                     <div class="form-group row py-3">
                                         <label for="amount" class="col-lg-2 control-label">Amount</label>
@@ -169,7 +170,7 @@
                                             <button type="submit" class="btn btn-primary btn-lg btn-block">Add punishment</button>
                                         </div>
                                         <div class="col-lg-offset-2 col-lg-6 py-2">
-                                            <a href="showpackagelist.html"><button type="button"
+                                            <a href="/contractpunishment?contractid=<%=request.getAttribute("contractid")%>&userid=<%=request.getAttribute("customerid")%>"><button type="button"
                                                     class="btn btn-danger btn-lg btn-block">Cancel</button></a>
                                         </div>
                                     </div>
