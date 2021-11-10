@@ -14,11 +14,11 @@ import com.example.demo.service.UserService;
 
 @Controller
 public class ManageCustomer {
-
+	
 	private final UserService userService;
 	private final ContractService contractService;
 	private final PunishmentService punishmentSrevice;
-    
+	
 	@Autowired
 	public ManageCustomer(UserService userService, ContractService contractService,
 			PunishmentService punishmentSrevice) {
@@ -37,54 +37,86 @@ public class ManageCustomer {
 	}
 	
 	@RequestMapping("/customerinfo")
-	public ModelAndView CustomerInfo(@RequestParam("id") String id) {
+	public ModelAndView CustomerInfo(@RequestParam("userid") String userid) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("customerinfo", userService.getCustomer(id));
+		mv.addObject("customerinfo", userService.getCustomer(userid));
 		mv.setViewName("customerinfo");
 		return mv;
 	}
 	
 	@RequestMapping("/customercontractlist")
-	public ModelAndView CustomerContractList(@RequestParam("id") String id) {
+	public ModelAndView CustomerContractList(@RequestParam("userid") String userid) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("contractlist", contractService.getAllUserContract(id));
+		mv.addObject("customerid", userid);
+		mv.addObject("contractlist", contractService.getAllUserContract(userid));
 		mv.setViewName("customercontractlist");
 		return mv;
 	}
 	
 	@RequestMapping("/customercontractdetail")
-	public ModelAndView CustomerContractDetail(@RequestParam("id") String id) {
+	public ModelAndView CustomerContractDetail(@RequestParam("contractid") String contractid, @RequestParam("userid") String userid) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("contractdetail", contractService.getContractById(id));
+		mv.addObject("customerid", userid);
+		mv.addObject("contractdetail", contractService.getContractById(contractid));
 		mv.setViewName("customercontractdetail");
 		return mv;
 	}
 	
 	@RequestMapping("/contractpunishment")
-	public ModelAndView ContractPunishment(@RequestParam("id") String id) {
+	public ModelAndView ContractPunishment(@RequestParam("contractid") String contractid, @RequestParam("userid") String userid) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("punishmentlist", punishmentSrevice.getPunishmentByContractID(id));
-		mv.addObject("contractid", id);
+		mv.addObject("customerid", userid);
+		mv.addObject("punishmentlist", punishmentSrevice.getPunishmentByContractID(contractid));
+		mv.addObject("contractid", contractid);
 		mv.setViewName("contractpunishment");
 		return mv;
 	}
 	
 	@RequestMapping("/addpunishment")
-	public ModelAndView addPunishment(String id) {
+	public ModelAndView AddPunishment(@RequestParam("contractid") String contractid, @RequestParam("userid") String userid) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("contractid", id);
+		mv.addObject("customerid", userid);
+		mv.addObject("contractid", contractid);
 		mv.setViewName("addpunishment");
 		return mv;
 	}
 	
 	@RequestMapping("/add_punishment_function")
-	public ModelAndView addPunishmentFucntion(
+	public ModelAndView AddPunishmentFucntion(
+			@RequestParam("userid") String userid,
 			@RequestParam("contractid") String contractid,
 			@RequestParam("amount") String amount,
 			@RequestParam("reason") String reason,
 			@RequestParam("deadline") String deadline) {
 		ModelAndView mv = new ModelAndView();
 		punishmentSrevice.addContractPunishment(contractid, amount, reason, deadline);
+		mv.addObject("customerid", userid);
+		mv.addObject("punishmentlist", punishmentSrevice.getPunishmentByContractID(contractid));
+		mv.setViewName("contractpunishment");
+		return mv;
+	}
+	
+	@RequestMapping("/editpunishment")
+	public ModelAndView EditPunishment(@RequestParam("punishmentid") String punishmentid, @RequestParam("contractid") String contractid, @RequestParam("userid") String userid) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("customerid", userid);
+		mv.addObject("contractid", contractid);
+		mv.addObject("punishment", punishmentSrevice.getPunishmentByID(punishmentid).get(0));
+		mv.setViewName("editpunishment");
+		return mv;
+	}
+	
+	@RequestMapping("/edit_punishment_function")
+	public ModelAndView EditPunishmentFucntion(
+			@RequestParam("userid") String userid,
+			@RequestParam("contractid") String contractid,
+			@RequestParam("id") String id,
+			@RequestParam("amount") String amount,
+			@RequestParam("reason") String reason,
+			@RequestParam("deadline") String deadline) {
+		ModelAndView mv = new ModelAndView();
+		punishmentSrevice.editContractPunishment(id, amount, reason, deadline);
+		mv.addObject("customerid", userid);
 		mv.addObject("punishmentlist", punishmentSrevice.getPunishmentByContractID(contractid));
 		mv.setViewName("contractpunishment");
 		return mv;

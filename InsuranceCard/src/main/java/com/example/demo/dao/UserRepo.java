@@ -86,6 +86,21 @@ public interface UserRepo extends JpaRepository<User, Long> {
 			+ "Where roleid=3 AND id = ?1", nativeQuery = true)
 	public ArrayList<User> getCustomer(String id);
 	
+	@Query( value = "SELECT `user`.`id`,\r\n"
+			+ "    `user`.`address`,\r\n"
+			+ "    `user`.`dob`,\r\n"
+			+ "    `user`.`email`,\r\n"
+			+ "    `user`.`gender`,\r\n"
+			+ "    `user`.`name`,\r\n"
+			+ "    `user`.`password`,\r\n"
+			+ "    `user`.`phonenumber`,\r\n"
+			+ "    `user`.`socialsercuritynumber`,\r\n"
+			+ "    `user`.`username`,\r\n"
+			+ "    `user`.`roleid`\r\n"
+			+ "FROM `insurancecardsystem1`.`user`\r\n"
+			+ "Where roleid=3", nativeQuery = true)
+	public ArrayList<User> getAllCustomer();
+	
 	User findByUsername(String username);
 	
 	@Modifying

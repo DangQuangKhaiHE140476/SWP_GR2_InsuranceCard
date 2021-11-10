@@ -61,6 +61,14 @@ public class UserService {
 		return repo.getUser(id);
 	}
 	
+	public ArrayList<User> getAllCustomer(){
+		return repo.getAllCustomer();
+	}
+	
+	public User getCustomer(String id){
+		return repo.getCustomer(id).get(0);
+	}
+	
 	public User getUserByUsername(String username){
 		return repo.findByUsername(username);
 	}

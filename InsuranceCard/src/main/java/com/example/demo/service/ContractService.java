@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.sql.Date; 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,14 @@ public class ContractService {
 	public Timestamp getCurrentDate() {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		return ts;
+	}
+	
+	public ArrayList<Contract> getAllUserContract(String id){
+		return contractRepo.getAllContractByUserID(id);
+	}
+	
+	public Contract getContractById(String id) {
+		return contractRepo.getContractByID(id).get(0);
 	}
 
 	public void RequestNewContract(String userid,
