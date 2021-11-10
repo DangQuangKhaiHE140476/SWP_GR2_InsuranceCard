@@ -51,7 +51,7 @@
 			<hr class="sidebar-divider my-0" />
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="/viewprofile">
+			<li class="nav-item"><a class="nav-link" href="/customerlist">
 					<!-- <i class="fas fa-fw fa-tachometer-alt"></i> --> <i
 					class="fas fa-tachometer-alt"></i> <span>Show customer list</span>
 			</a></li>
@@ -74,7 +74,7 @@
 
 			<!-- Nav Item - History -->
 			<li class="nav-item"><a class="nav-link"
-				href="/contractpackagelist"> <i
+				href="/reportedaccidentlist"> <i
 					class="fas fa-file-contract fa-lg"></i> <span>Customer's Report Accident list</span>
 			</a></li>
 
@@ -84,7 +84,7 @@
 
 			<!-- Nav Item - History -->
 			<li class="nav-item"><a class="nav-link"
-				href="/showcontractlist"> <i class="fas fa-file-contract fa-lg"></i>
+				href="/compensationlist"> <i class="fas fa-file-contract fa-lg"></i>
 					<span>Compensation list</span></a></li>
 
 		</ul>

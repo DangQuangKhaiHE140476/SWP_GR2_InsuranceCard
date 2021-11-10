@@ -310,6 +310,7 @@
                     </div>
 
                     <div class="col-lg-4">
+                    <%if(!c.getContractStatus().getStatus().equals("TERMINATED")){ %>
                         <div class="col-lg-offset-2 py-2">
                             <a href="requestcontract?status=cancel&&id=<%=c.getId()%>"><button type="button"
                                     class="btn btn-primary btn-lg btn-block" onclick ="return confirm('Do you want to cancel this contract?')">Cancel Contract</button></a>
@@ -324,7 +325,7 @@
                             <a href="/reportaccident"><button type="button"
                                     class="btn btn-primary btn-lg btn-block">Report Accident</button></a>
                         </div>
-
+						<%} %>
                         <div class="col-lg-offset-2 py-2">
                             <a href="/showcontractlist"><button type="button"
                                     class="btn btn-primary btn-lg btn-block">Back to contract list</button></a>
