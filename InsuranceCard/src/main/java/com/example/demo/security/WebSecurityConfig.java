@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -42,7 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        authenBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 //    }
 	
-	
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/css/**", "/js/**");
+    }
 	
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -97,7 +101,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		"/showrequestlist",
         		"/requestcancel",
         		"/requestrenew",
-        		"/requestnew")
+        		"/requestnew",
+        		"/customerlist",
+        		"/customercontractdetail",
+        		"/customerinfo",
+        		"/customercontractlist",
+        		"/contractpunishment",
+        		"/addpunushment")
         	.hasAnyAuthority("STAFF")
         .anyRequest().authenticated()
         .and()
