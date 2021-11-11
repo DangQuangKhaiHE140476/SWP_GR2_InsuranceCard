@@ -202,6 +202,7 @@
                                         <tbody>
                                         <%for(Accident a:list){ 
                                         	Compensation c = a.getCompensation();
+                                        	if(c != null){
                                         %>
                                         	<tr>
                                         		<td><%=c.getId() %></td>
@@ -210,7 +211,8 @@
                                         		<td><%=c.getCompensationStatus().getValue()%></td>
                                         		<% if(c.getCompensationStatus().getValue().equalsIgnoreCase("unpaid")){ %>
                                         		<td><a href="/requestcompensation?id=<%=a.getContract().getId()%>" onclick ="return confirm('Do you want to request compensation?')">Request</a></td>
-                                        		<%}%>
+                                        		<%}
+                                        		}%>
                                         	</tr>
                                         <%} %>
                                         </tbody>

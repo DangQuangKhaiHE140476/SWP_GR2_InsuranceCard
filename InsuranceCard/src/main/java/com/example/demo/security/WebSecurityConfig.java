@@ -107,7 +107,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		"/customerinfo",
         		"/customercontractlist",
         		"/contractpunishment",
-        		"/addpunushment")
+        		"/addpunushment",
+        		"/reportedaccidentlist",
+        		"/verifyaccident{id}",
+        		"/approve",
+        		"/reject",
+        		"/compensationlist",
+        		"/compensationdetail",
+        		"/resolvecompensation")
         	.hasAnyAuthority("STAFF")
         .anyRequest().authenticated()
         .and()

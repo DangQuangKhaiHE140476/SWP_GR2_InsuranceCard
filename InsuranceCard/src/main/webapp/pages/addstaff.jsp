@@ -151,7 +151,7 @@
             
                                 <div class="form-group">
                                   <label for="DOB" class="font-weight-bold">Date of birth</label>
-                                  <input type="text" class="form-control" id="DOB" name="dob" placeholder="Enter dob">
+                                  <input type="date" class="form-control" id="DOB" name="dob" placeholder="Enter dob">
                                 </div>
             
                                 <div class="form-group">

@@ -12,6 +12,9 @@ import com.example.demo.dao.ContractStatusRepo;
 import com.example.demo.dao.PackageRepo;
 import com.example.demo.dao.PaymentRepo;
 import com.example.demo.dao.PaymentTypeRepo;
+import com.example.demo.dao.RequestRepo;
+import com.example.demo.dao.RequestStatusRepo;
+import com.example.demo.dao.RequestTypeRepo;
 import com.example.demo.dao.UserRepo;
 import com.example.demo.dao.VehicleRepo;
 import com.example.demo.dao.VehicleTypeRepo;
@@ -21,6 +24,9 @@ import com.example.demo.model.Vehicle;
 import com.example.demo.model.Package;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentType;
+import com.example.demo.model.Request;
+import com.example.demo.model.RequestStatus;
+import com.example.demo.model.RequestType;
 import com.example.demo.model.User;
 
 @Service
@@ -34,11 +40,14 @@ public class ContractService {
 	private final VehicleRepo vehicleRepo;
 	private final PaymentTypeRepo paymentTypeRepo;
 	private final PaymentRepo paymentRepo;
+	private final RequestRepo requestRepo;
+	private final RequestStatusRepo requestStatusRepo;
+	private final RequestTypeRepo requestTypeRepo;
 
 	@Autowired
     public ContractService(ContractRepo contractRepo, VehicleTypeRepo vehicleTypeRepo, PackageRepo packageRepo,
 			ContractStatusRepo contractStatusRepo, UserRepo userRepo, VehicleRepo vehicleRepo,
-			PaymentTypeRepo paymentTypeRepo, PaymentRepo paymentRepo) {
+			PaymentTypeRepo paymentTypeRepo, PaymentRepo paymentRepo, RequestRepo requestRepo,RequestStatusRepo requestStatusRepo,RequestTypeRepo requestTypeRepo) {
 		super();
 		this.contractRepo = contractRepo;
 		this.vehicleTypeRepo = vehicleTypeRepo;
@@ -48,6 +57,9 @@ public class ContractService {
 		this.vehicleRepo = vehicleRepo;
 		this.paymentTypeRepo = paymentTypeRepo;
 		this.paymentRepo = paymentRepo;
+		this.requestRepo = requestRepo;
+		this.requestStatusRepo = requestStatusRepo;
+		this.requestTypeRepo = requestTypeRepo;
 	}
 
 	public Timestamp getCurrentDate() {
@@ -104,6 +116,19 @@ public class ContractService {
 		pm.setPaymentdate(getCurrentDate());
 		paymentRepo.save(pm);
 		
+		Request request = new Request();
+		long millis=System.currentTimeMillis();  
+		Date Date = new Date(millis);
+		Timestamp timestamp = new Timestamp(date.getTime());
+		RequestStatus Status = requestStatusRepo.getRequestStatus("PROCESSING").get(0);
+		RequestType type = requestTypeRepo.getRequestType("NEW_CONTRACT").get(0);
+		
+		request.setContract(c);
+		request.setRequestStatus(Status);
+		request.setRequestType(type);
+		request.setRequestdate(timestamp);
+		request.setUser(u);
+		requestRepo.save(request);
 		
 	}
 }

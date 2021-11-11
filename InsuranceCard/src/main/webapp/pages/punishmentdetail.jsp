@@ -177,7 +177,7 @@
 									<div>
 										<h5 class="h5 mb-1 text-gray-1000">
 											<a class="nav-link"
-												href="/contractuserpackage?id=<%=list.get(0).getContract().getId()%>"
+												href="/contractdetail?id=<%=list.get(0).getContract().getId()%>"
 												style="padding: 0"> <%=list.get(0).getContract().getId()%>
 											</a>
 										</h5>

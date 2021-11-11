@@ -221,7 +221,7 @@
 											<tr>
 												<td><%=a.getId()%></td>
 												<td><a
-													href="/contractuserpackage?id=<%=a.getContract().getId()%>">
+													href="/contractdetail?id=<%=a.getContract().getId()%>">
 														<%=a.getContract().getId()%>
 												</a></td>
 												<td><%=d.showDate(new Timestamp(a.getAccidentDate().getTime()))%></td>

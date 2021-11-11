@@ -72,22 +72,22 @@ public class ManageRequestController {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<Contract> list = contractService.getContractProcess();
 		
-		for (Contract c : list) {
-			User user = (User) session.getAttribute("user");
-			Contract contract = contractService.getContractByID(c.getId().toString()).get(0);
-			Date date = new Date();
-			Timestamp timestamp = new Timestamp(date.getTime());
-			RequestStatus Status = requestStatusService.getRequestStatusByStatus("PROCESSING").get(0);
-			RequestType type = requestTypeService.getRequestTypeByType("NEW_CONTRACT").get(0);
-			
-			Request request = new Request();
-			request.setContract(contract);
-			request.setRequestStatus(Status);
-			request.setRequestType(type);
-			request.setRequestdate(timestamp);
-			request.setUser(user);
-			requestService.addRequest(request);
-		}
+//		for (Contract c : list) {
+//			User user = (User) session.getAttribute("user");
+//			//Contract contract = contractService.getContractByID(c.getId().toString()).get(0);
+//			Date date = new Date();
+//			Timestamp timestamp = new Timestamp(date.getTime());
+//			RequestStatus Status = requestStatusService.getRequestStatusByStatus("PROCESSING").get(0);
+//			RequestType type = requestTypeService.getRequestTypeByType("NEW_CONTRACT").get(0);
+//			
+//			Request request = new Request();
+//			request.setContract(c);
+//			request.setRequestStatus(Status);
+//			request.setRequestType(type);
+//			request.setRequestdate(timestamp);
+//			request.setUser(user);
+//			requestService.addRequest(request);
+//		}
 		
 		mv.addObject("news",requestService.getRequestByTypeID("1"));
 		mv.setViewName("requestnew");

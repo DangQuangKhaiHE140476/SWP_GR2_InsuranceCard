@@ -204,7 +204,7 @@
                                         	<%for(Payment p:list){ %>
                                         	<tr>
                                         		<td><%=p.getId()%></td>
-                                        		<td><a href="/contractuserpackage?id=<%=p.getContract().getId()%>"> 
+                                        		<td><a href="/contractdetail?id=<%=p.getContract().getId()%>"> 
 											        <%=p.getContract().getId()%>
 											    </a></td>
 											    <%if(p.getPunishment() != null){ %>
