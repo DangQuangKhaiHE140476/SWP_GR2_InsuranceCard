@@ -25,7 +25,7 @@ public class DateUtils {
 		return formatter.format(date);	
 	}
 	
-	public Boolean durationValidata(String duration) {
+	public Boolean durationValidate(String duration) {
 		Boolean validator = false;
 		if(Pattern.matches("\\d+ year", duration.toLowerCase())) {
 			validator = true;

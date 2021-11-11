@@ -1,9 +1,6 @@
 package com.example.demo.common;
 
-<<<<<<< Updated upstream
-=======
 import java.util.regex.Matcher;
->>>>>>> Stashed changes
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +12,6 @@ public class StringUtils {
 		return Boolean.parseBoolean(gender);
 	}
 	
-<<<<<<< Updated upstream
 	public Boolean emailValidate(String email) {
 		Boolean validator = false;
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
@@ -23,7 +19,8 @@ public class StringUtils {
 			validator = true;
 		}
 		return validator;
-=======
+	}
+	
 	private boolean isPositiveInteger(String value) throws NumberFormatException {
 		if (value == null || "".equals(value.trim())) {
 			return false;
@@ -49,6 +46,5 @@ public class StringUtils {
 	
 	public boolean checkNumberInputWithLenght (String input, int length) {
 		return (isPositiveInteger(input) && input.length() == length);
->>>>>>> Stashed changes
 	}
 }
