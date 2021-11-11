@@ -3,6 +3,7 @@ package com.example.demo.common;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,14 @@ public class DateUtils {
 	public String showDate(Timestamp date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);	
+	}
+	
+	public Boolean durationValidata(String duration) {
+		Boolean validator = false;
+		if(Pattern.matches("\\d+ year", duration.toLowerCase())) {
+			validator = true;
+		}
+		return validator;
 	}
 }
 
