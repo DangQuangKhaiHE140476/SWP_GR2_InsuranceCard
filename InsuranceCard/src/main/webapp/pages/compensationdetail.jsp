@@ -104,7 +104,7 @@
 					<div class="container">
 						<!-- Page Heading -->
 						<h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-							Staff Menu</h1>
+							Compensation Detail</h1>
 					</div>
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">

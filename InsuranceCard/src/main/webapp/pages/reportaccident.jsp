@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.model.Contract"%>
 <%@page import="com.example.demo.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -150,7 +151,10 @@
                               <form action="/report" method = 'POST'>
                                 <div class="form-group">
                                   <label for="Name" class="font-weight-bold">Contract ID</label>
-                                  <% String contractid = (String) session.getAttribute("contractid"); %>
+                                  <% 
+                                  Contract contract = (Contract) session.getAttribute("contract"); 
+                                  String contractid = contract.getId().toString();
+                                  %>
                                   <input type="text" class="form-control" id="contractid" name=contractid readonly value="<%=contractid%>">                     
                                 </div>
 

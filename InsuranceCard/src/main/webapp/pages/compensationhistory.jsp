@@ -201,15 +201,18 @@
                                         <% ArrayList<Accident> list = (ArrayList<Accident>) request.getAttribute("accidents");%>
                                         <tbody>
                                         <%for(Accident a:list){ 
+<<<<<<< Updated upstream
                                         	Compensation c = a.getCompensation();
                                         	if(c != null){
+=======
+>>>>>>> Stashed changes
                                         %>
                                         	<tr>
-                                        		<td><%=c.getId() %></td>
+                                        		<td><%=a.getCompensation().getId() %></td>
                                         		<td><%=a.getId() %></td>
-                                        		<td><%=c.getInsuranceLiabilities().get(0).getCompensationAmount()%> VND</td>
-                                        		<td><%=c.getCompensationStatus().getValue()%></td>
-                                        		<% if(c.getCompensationStatus().getValue().equalsIgnoreCase("unpaid")){ %>
+                                        		<td><%=a.getCompensation().getInsuranceLiabilities().get(0).getCompensationAmount()%> VND</td>
+                                        		<td><%=a.getCompensation().getCompensationStatus().getValue()%></td>
+                                        		<% if(a.getCompensation().getCompensationStatus().getValue().equalsIgnoreCase("unpaid")){ %>
                                         		<td><a href="/requestcompensation?id=<%=a.getContract().getId()%>" onclick ="return confirm('Do you want to request compensation?')">Request</a></td>
                                         		<%}
                                         		}%>

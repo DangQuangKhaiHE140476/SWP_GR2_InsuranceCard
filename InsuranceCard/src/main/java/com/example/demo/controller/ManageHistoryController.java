@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,22 +61,22 @@ public class ManageHistoryController {
 		return mv;
 	}
 	
-	@RequestMapping("/compensationhistory")
-	public ModelAndView getCompensationByAccident() {
-		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
-		ArrayList<Accident> accident = new ArrayList<Accident>();
-		
-		for (Contract contract2 : contract) {
-			accident.addAll(accidentService.getAccidentByContractID(contract2.getId().toString()));
-		}
-		
-		mv.addObject("accidents", accident);
-		mv.setViewName("compensationhistory");
-		return mv;
-		
-	}
+//	@RequestMapping("/compensationhistory")
+//	public ModelAndView getCompensationByAccident() {
+//		ModelAndView mv = new ModelAndView();
+//		
+//		ArrayList<Contract> contract = contractService.getContractByCurrentUserID();
+//		ArrayList<Accident> accident = new ArrayList<Accident>();
+//		
+//		for (Contract contract2 : contract) {
+//			accident.addAll(accidentService.getAccidentByContractID(contract2.getId().toString()));
+//		}
+//		
+//		mv.addObject("accidents", accident);
+//		mv.setViewName("compensationhistory");
+//		return mv;
+//		
+//	}
 	
 	@RequestMapping("/requestcompensation")
 	public ModelAndView requestCompensation(@RequestParam("id")String id) {
@@ -100,4 +101,23 @@ public class ManageHistoryController {
 		return new ModelAndView("redirect:/compensationhistory");
 	}
 	
+	@RequestMapping("/compensationhistory")
+	public ModelAndView getCompensationByAccident() {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = (User) session.getAttribute("user");
+		
+		List<Accident> accidents = new ArrayList<>();
+		
+		for(Contract contract : user.getContracts()) {
+			for(Accident accident : contract.getAccidents()) {
+				accidents.add(accident);
+			}
+		}
+		
+		mv.addObject("accidents", accidents);
+		mv.setViewName("compensationhistory");
+		return mv;
+		
+	}
 }
