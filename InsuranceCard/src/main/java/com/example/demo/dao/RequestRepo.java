@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Request;
-import com.example.demo.model.RequestType;
 
 public interface RequestRepo extends CrudRepository<Request, Long> {
 	
@@ -23,4 +22,13 @@ public interface RequestRepo extends CrudRepository<Request, Long> {
 			+ "FROM `insurancecardsystem1`.`request`\r\n"
 			+ "Where typeid=?1", nativeQuery = true)
 	public ArrayList<Request> getRequestByTypeID(String id);
+
+	
+	@Modifying
+	@Transactional
+	@Query( value = "UPDATE `insurancecardsystem1`.`request`\r\n"
+			+ "SET\r\n"
+			+ "`statusid` = 2\r\n"
+			+ "WHERE `typeid` = 5 AND `contractid` = ?1",nativeQuery = true)
+	public void resolveCompensationRequest(String id);
 }

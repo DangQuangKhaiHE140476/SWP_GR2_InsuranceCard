@@ -18,16 +18,16 @@ public class Compensation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@OneToOne
 	@JoinColumn(name = "accidentid", nullable = false)
 	private Accident accident;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "statusid", nullable = false)
 	private CompensationStatus compensationStatus;
-	
-	//not a column in table
+
+	// not a column in table
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "Compensation_ChossenLiability", joinColumns = {
 			@JoinColumn(name = "compensationid", referencedColumnName = "id") }, inverseJoinColumns = {
@@ -78,5 +78,5 @@ public class Compensation {
 	public void setInsuranceLiabilities(List<InsuranceLiability> insuranceLiabilities) {
 		this.insuranceLiabilities = insuranceLiabilities;
 	}
-	
+
 }

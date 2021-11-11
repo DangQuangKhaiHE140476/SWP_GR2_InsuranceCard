@@ -46,4 +46,20 @@ public class AccidentService {
 		accident.setContract(contract);
 		accidentRepo.save(accident);
 	}
+	
+	public ArrayList<Accident> getAllAcident() {
+		return (ArrayList<Accident>) accidentRepo.findAll();
+	}
+	
+	public ArrayList<Accident> getAcidentByID(String id) {
+		return (ArrayList<Accident>) accidentRepo.getAccidentByID(id);
+	}
+	
+	public void approve(String id) {
+		accidentRepo.approve(id);
+	}
+	
+	public void reject(String id) {
+		accidentRepo.reject(id);
+	}
 }

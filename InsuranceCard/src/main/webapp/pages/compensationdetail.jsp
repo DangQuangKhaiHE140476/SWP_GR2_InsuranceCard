@@ -1,3 +1,7 @@
+<%@page import="com.example.demo.model.Request"%>
+<%@page import="com.example.demo.model.InsuranceLiability"%>
+<%@page import="java.util.List"%>
+<%@page import="com.example.demo.model.Compensation"%>
 <%@page import="com.example.demo.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -13,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Staff menu</title>
+<title>Compensation Detail</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -145,7 +149,125 @@
 
 				<!-- /.container-fluid -->
 			</div>
-			<!-- End of Main Content -->
+			<!-- Begin Page Content -->
+			<div class="container-fluid row">
+
+				<div class="col-lg-8">
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Compensation information</h6>
+						</div>
+						<% Compensation c = (Compensation) request.getAttribute("compensation"); %>
+						<div class="card-body">
+							<div class="row py-3">
+								<div class="col-lg-2">
+									ID
+								</div>
+								<div>
+									<%=c.getId() %>
+								</div>
+							</div>
+							<!-- Divider -->
+							<hr class="sidebar-divider my-0" />
+							<div class="row py-3">
+								<div class="col-lg-2">
+									Accident ID
+								</div>
+								<div>
+									<%=c.getAccident().getId() %>
+								</div>
+							</div>
+							<!-- Divider -->
+							<hr class="sidebar-divider my-0" />
+							<div class="row py-3">
+								<div class="col-lg-2">
+									Amount
+								</div>
+								<%
+                                	int amount = 0;
+                                    for(InsuranceLiability l : c.getInsuranceLiabilities()) {
+                                    	amount += l.getCompensationAmount();
+                                    }
+                               %>
+								<div>
+									<%= amount%> VND
+								</div>
+							</div>
+							<!-- Divider -->
+							<hr class="sidebar-divider my-0" />
+							<div class="row py-3">
+								<div class="col-lg-2">
+									Status
+								</div>
+								<div>
+									<%=c.getCompensationStatus().getValue() %>
+								</div>
+							</div>
+							
+							<!-- Divider -->
+							<hr class="sidebar-divider my-0" />
+							<div class="row py-3">
+								<div class="col-lg-2">
+									Liabilities Detail
+								</div>
+								<div>
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Level damage</th>
+										<th>Compensation amount</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<%List<InsuranceLiability> ll = c.getInsuranceLiabilities();%>
+									<%for(InsuranceLiability il:ll){ %>
+									<tr>
+										<td><%=il.getId() %></td>
+										<td><%=il.getLevelDamage()%></td>
+										<td><%=il.getCompensationAmount()%></td>
+									</tr>
+									<%} %>
+								</tbody>
+							</table>
+								</div>
+							</div>
+							<!-- Divider -->
+							<hr class="sidebar-divider my-0" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4">
+				<% 
+					boolean clickable = false;
+					for(Request r : c.getAccident().getContract().getRequests()){
+						if(r.getRequestStatus().getStatus().equalsIgnoreCase("PROCESSING") && r.getRequestType().getType().equalsIgnoreCase("REQUEST_COMPENSATION"))
+						{
+							clickable = true;
+							break;
+						}
+					}
+					if(clickable == true){
+				%>
+					<div class="col-lg-offset-2 py-2">
+						<a href="/resolvecompensation?id=<%=c.getId()%>"><button type="button" class="btn btn-primary btn-lg btn-block">Resolve <%=c.getId()%></button></a>
+					</div>
+				<%}else{%>
+					<div class="col-lg-offset-2 py-2">
+						<button type="button" class="btn btn-primary btn-lg btn-block" disabled>Resolve <%=c.getId()%></button>
+					</div>
+				<%} %>
+					<div class="col-lg-offset-2 py-2">
+						<a href="/compensationlist"><button type="button" class="btn btn-danger btn-lg btn-block">Back</button></a>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+
+		</div>
+		<!-- End of Main Content -->
 		</div>
 		<!-- Footer -->
 

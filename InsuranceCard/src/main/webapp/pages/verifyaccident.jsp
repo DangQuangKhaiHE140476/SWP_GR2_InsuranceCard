@@ -1,4 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="com.example.demo.model.Accident"%>
+<%@page import="com.example.demo.model.InsuranceLiability"%>
+<%@page import="com.example.demo.common.DateUtils"%>
 <%@page import="com.example.demo.model.User"%>
+<%@page import="com.example.demo.model.Punishment"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -13,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Staff menu</title>
+<title>Verify Accident</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -100,7 +106,7 @@
 					<div class="container">
 						<!-- Page Heading -->
 						<h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-							Staff Menu</h1>
+							Verify Accident</h1>
 					</div>
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -111,8 +117,9 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"> <% User user = (User) request.getAttribute("user");
- 								%> ${user.getUsername()}
+								class="mr-2 d-none d-lg-inline text-gray-600 small"> <%
+										User user = (User) request.getAttribute("user");
+									%> ${user.getUsername()}
 							</span> <img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg" />
 						</a> <!-- Dropdown - User Information -->
@@ -130,7 +137,7 @@
 									password
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="/logout"> <i
+								<a class="dropdown-item" href="/logout""> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
@@ -141,9 +148,81 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				
+				<!-- Begin Page Content -->
+				<!--Contract-->
+				<div class="row justify-content-center">
+					<div class="col-lg-8">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Create Compensation</h6>
+                            </div>
+                            
+                            <div class="card-body">
+                                <form class="form-horizontal" role="form" method = 'POST' action="/approve">
+                                <%
+                                   	Accident a = (Accident) request.getAttribute("accident");
+                                 %>
+									<div class="form-group row">
+                                        <label for="Duration" class="col-lg-2 control-label">AccidentID</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="id" value ="<%=a.getId()%>" readonly>
+                                        </div>
+                                    </div>
+                                  
+									<div class="form-group row">
+										<label for="Price" class="col-lg-2 control-label">Choose Liability</label>
+										<div class="col-lg-8 row py-3">
+											<table class="table table-bordered" id="dataTable"
+												width="100%" cellspacing="0">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Level damage</th>
+														<th>Compensation amount</th>
+														<th>Select</th>
+													</tr>
+												</thead>
 
-				<!-- /.container-fluid -->
+												<tbody>
+													<%
+													List<InsuranceLiability> ll = new ArrayList<>();
+													ll= a.getContract().getPackage_().getInsuranceLiabilities();%>
+													<%
+													for (InsuranceLiability il : ll) {
+													%>
+													<tr>
+														<td><%=il.getId()%></td>
+														<td><%=il.getLevelDamage()%></td>
+														<td><%=il.getCompensationAmount()%></td>
+														<td>
+														    <input type="checkbox" name="liabilities" value="<%=il.getId()%>">
+														</td>
+													</tr>
+													<%
+													}
+													%>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="form-group row">
+                                        <div class="col-lg-offset-2 col-lg-6">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Approve</button>
+                                        </div>
+                                        <div class="col-lg-offset-2 col-lg-6">
+                                            <a href="reject?id=<%=a.getId()%>"><button type="button" class="btn btn-danger btn-lg btn-block">Reject</button></a>
+                                        </div>
+                                        <div class="col-lg-offset-2 col-lg-6">
+                                            <a href="reportedaccidentlist"><button type="button" class="btn btn-danger btn-lg btn-block">Cancel</button></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+					
+				</div>
+
 			</div>
 			<!-- End of Main Content -->
 		</div>

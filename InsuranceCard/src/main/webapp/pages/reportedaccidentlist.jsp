@@ -1,3 +1,7 @@
+<%@page import="com.example.demo.common.DateUtils"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="com.example.demo.model.Accident"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.example.demo.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -13,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Staff menu</title>
+<title>View request list</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -100,7 +104,7 @@
 					<div class="container">
 						<!-- Page Heading -->
 						<h1 class="py-4 mb-4 text-center font-weight-bold text-primary">
-							Staff Menu</h1>
+							Reported Accident List</h1>
 					</div>
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -141,7 +145,65 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				
+				<div class="row justify-content-center">
+					<!--Reported Accident function-->
+					
+					<div class="col-lg-8">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">Reported accidents</h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable" width="100%"
+										cellspacing="0">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>ContractID</th>
+												<th>Accident Date</th>
+												<th>damage</th>
+												<th>Police</th>
+												<th>Hospital</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<%DateUtils d = new DateUtils();%>
+										<%
+										ArrayList<Accident> list = (ArrayList<Accident>) request.getAttribute("accidentList");
+										%>
+										<tbody>
+											<%
+											for (Accident a : list) {
+											%>
+											<tr>
+												<td><%=a.getId()%></td>
+												<td><a
+													href="/...?id=<%=a.getContract().getId()%>">
+														<%=a.getContract().getId()%>
+												</a></td>
+												<td><%=d.showDate(new Timestamp(a.getAccidentDate().getTime()))%></td>
+												<td><%=a.getDamage()%></td>
+												<td><%=a.getIdaccidentfrompolice()%></td>
+												<td><%=a.getIddamagefromhospital()%></td>
+												<td><%=a.getAccidentStatus().getStatus()%></td>
+												<%if(a.getAccidentStatus().getStatus().trim().equalsIgnoreCase("VERIFYING")){ %>
+												<td><a href="/verifyaccident?id=<%=a.getId()%>">Verify</a></td>
+												<%}else { %>
+												<td></td>
+												<%} %>
+											</tr>
+											<%
+											}
+											%>
+										</tbody>	
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- /.container-fluid -->
 			</div>
@@ -166,9 +228,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
